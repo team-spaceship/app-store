@@ -1,13 +1,12 @@
 import Order from '../schemas/Order';
 
 const orderService = class OrderService {
-  
   /**
   * Returns all orders
   *
   * @returns [{orders}]
   */
-  async getAllOrders() {
+  async getAllOrders(res) {
     const orders = await Order.find().exec();
     
     if (!orders) {
@@ -23,7 +22,7 @@ const orderService = class OrderService {
   * @param id
   * @returns {order}
   */
-  async getOrder(id) {
+  async getOrder(res, id) {
     const order = await Order.findOne({ _id: id }).exec();
     
     if (!order) {

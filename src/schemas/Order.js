@@ -1,7 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-var OrderSchema = new mongoose.Schema({
-    "date": Date
+const OrderSchema = new mongoose.Schema({
+  date: Date,
 });
 
 mongoose.model('Order', OrderSchema);

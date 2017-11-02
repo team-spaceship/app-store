@@ -30,7 +30,7 @@ app.use(cors());
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function (request, response) {
+app.get('/', (request, response) => {
   response.render('public/index');
 });
 
