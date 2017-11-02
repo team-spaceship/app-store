@@ -1,4 +1,4 @@
 {
   "presets": ["env"],
-  "plugins": ["babel-polyfill","transform-async-to-generator", "transform-object-rest-spread"]
+  "plugins": ["babel-polyfill","transform-async-to-generator"]
 }
