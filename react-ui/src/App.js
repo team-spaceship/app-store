@@ -8,11 +8,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to the Projector App Store</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Please login to go to your account.
         </p>
+	<p className="App-body-text">
+	  Don't have a Projector yet? Order online from our hardware store!
+	</p>
       </div>
     );
   }
