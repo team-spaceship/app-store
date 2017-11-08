@@ -5,7 +5,7 @@ Install de laastste node versie (op RPI Zero gebruik dit [install script](https:
 installeer yarn globally met: `npm install yarn -g`
 
 Stap 1:
-run `yarn install`
+run `yarn install` in the root and then again in the react-ui folder.
 
 Stap 2:
 maar een `.env` file aan in de root van het project (in dit geval dus in de `app-store` folder)
