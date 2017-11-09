@@ -5,7 +5,6 @@ import connectMongo from 'connect-mongo';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import path from 'path';
 
 import OrderRoutes from "./routes/orderRoutes";
 import AppRoutes from "./routes/appRoutes";
@@ -27,18 +26,15 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(cors());
 
 OrderRoutes.create(app);
 AppRoutes.create(app);
 
-
-app.use(express.static('react-ui/build'));
-app.set('view engine', 'html');
+app.use(express.static(__dirname + '/../react-ui/build'));
 
 app.get('*', (request, response) => {
-  response.render('react-ui/build');
+  response.sendFile(__dirname + '/../react-ui/build/index.html');
 });
 
 export default app;
