@@ -5,9 +5,9 @@ import connectMongo from 'connect-mongo';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import path from 'path';
 
 import OrderRoutes from "./routes/orderRoutes";
+import AppRoutes from "./routes/appRoutes";
 
 const MongoStore = connectMongo(session);
 
@@ -26,23 +26,15 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(cors());
 
-// Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
-
-// All remaining requests return the React app, so it can handle routing.
-app.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-});
-
-// app.use(express.static(__dirname + '../react-ui/public'));
-// app.set('view engine', 'html');
-// app.get('/', (request, response) => {
-//   response.render('../react-ui/public/index');
-// });
-
 OrderRoutes.create(app);
+AppRoutes.create(app);
+
+app.use(express.static(__dirname + '/../react-ui/build'));
+
+app.get('*', (request, response) => {
+  response.sendFile(__dirname + '/../react-ui/build/index.html');
+});
 
 export default app;
