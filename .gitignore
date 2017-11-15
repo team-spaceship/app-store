@@ -2,7 +2,6 @@
 /node_modules
 /react-ui/node_modules
 /react-ui/build
-react-ui/yarn.lock
 
 # misc
 .DS_Store
