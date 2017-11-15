@@ -26,3 +26,9 @@ run `yarn start`
 
 Stap 4: open de app
 open `http://localhost:3000`
+
+Als je tegelijk ook de front-end met yarn wilt runnen, maak dan ook in de map `react-ui` een `.env`-bestand aan, met als inhoud
+```
+PORT=3001
+```
+Je kunt dan in de map `react-ui` ook `yarn start` geven om ze naast elkaar te draaien.
