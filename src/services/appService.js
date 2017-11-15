@@ -15,8 +15,9 @@ const appService = class AppService {
     
     return apps;
   }
+
   async searchApps(query, res) {
-    const apps = await App.find({ name: { $regex: '.*' + query + '.*' } }).exec();
+    const apps = await App.find({ name: { $regex: '.*' + query + '.*', $options: "i" } }).exec();
 
     if (!apps) {
       return res.status(400).end();
