@@ -22,7 +22,9 @@
     "morgan": "^1.9.0"
   },
   "scripts": {
+    "all": "yarn run frontend && yarn start",
     "start": "babel-watch src/wrapper.js",
+    "frontend": "cd react-ui && ttab yarn start",
     "heroku-postbuild": "npm run build",
     "build": "babel src --out-dir lib --copy-files",
     "lint": "eslint src",
@@ -42,6 +44,7 @@
     "eslint-plugin-react": "^7.4.0",
     "nyc": "^11.1.0",
     "tap-nyc": "^1.0.3",
-    "tape": "^4.8.0"
+    "tape": "^4.8.0",
+    "ttab": "^0.6.1"
   }
 }
