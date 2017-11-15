@@ -10,7 +10,7 @@ const appController = class AppController {
   */
   getAllApps(req, res) {
     // Search for apps with the corresponding name (query param).
-    if(req.query.name) {
+    if (req.query.name) {
       appService.searchApps(req.query.name, res).then(
         (result) => {
           res.json(result);
