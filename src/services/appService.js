@@ -15,6 +15,15 @@ const appService = class AppService {
     
     return apps;
   }
+  async searchApps(query, res) {
+    const apps = await App.find({ name: { $regex: '.*' + query + '.*' } }).exec();
+
+    if (!apps) {
+      return res.status(400).end();
+    }
+
+    return apps;
+  }
   
   async createApp(app) {
     const appScheme = new App({
@@ -31,4 +40,3 @@ const appService = class AppService {
 };
 
 export default new appService();
-
