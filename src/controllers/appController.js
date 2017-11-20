@@ -9,16 +9,28 @@ const appController = class AppController {
   * @param next
   */
   getAllApps(req, res) {
-    // Search for apps with the corresponding name (query param).
-    if (req.query.name) {
-      appService.searchApps(req.query.name, res).then(
-        (result) => {
-          res.json(result);
-        },
-        () => {
-          res.status(500).send({ messsage: "Something went wrong" });
-        },
-      );
+    if (req.query.name || req.query.category) { // Filter app results.
+      if (req.query.category) { // Search for apps that have a certain category.
+        console.log("Searching with category");
+        appService.searchAppsWithCategory(req.query.name, req.query.category, res).then(
+          (result) => {
+            res.json(result);
+          },
+          () => {
+            res.status(500).send({ messsage: "Something went wrong" });
+          },
+        );
+      } else { // Search for apps without checking for category.
+        console.log("Searching without category");
+        appService.searchApps(req.query.name, res).then(
+          (result) => {
+            res.json(result);
+          },
+          () => {
+            res.status(500).send({ messsage: "Something went wrong" });
+          },
+        );
+      }
     } else { // If no query parameter is given, return all apps.
       appService.getAllApps(res).then(
         (result) => {

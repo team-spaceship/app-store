@@ -1,4 +1,5 @@
 import App from '../schemas/App';
+import Category from '../schemas/Category';
 
 const appService = class AppService {
   /**
@@ -19,6 +20,17 @@ const appService = class AppService {
   async searchApps(query, res) {
     const apps = await App.find({ name: { $regex: '.*' + query + '.*', $options: "i" } }).exec();
 
+    if (!apps) {
+      return res.status(400).end();
+    }
+
+    return apps;
+  }
+
+  //WORK IN PROGRESS... STILL NEED TO FIGURE OUT HOW I'M GOING TO RETRIEVE THE APPS WHEN STARTING AT THE CATEGORY SCHEMA.
+  async searchAppsWithCategory(search, category, res) {
+    console.log(category);
+    const apps = await Category.find({ name: category }).exec();
     if (!apps) {
       return res.status(400).end();
     }
