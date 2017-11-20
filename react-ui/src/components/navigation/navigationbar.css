@@ -1,0 +1,12 @@
+.lumos-logo{
+    font-weight: 700;
+    color: #fff;
+}
+
+.nav-link{
+    color: #fff;
+}
+
+.nav-link:hover , .lumos-logo:hover{
+    color: #ff0080;
+}
