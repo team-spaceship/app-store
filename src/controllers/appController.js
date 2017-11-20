@@ -19,9 +19,7 @@ const appController = class AppController {
           res.status(500).send({ messsage: "Something went wrong" });
         },
       );
-    } 
-    // If no query parameter is given, return all apps.
-    else {
+    } else { // If no query parameter is given, return all apps.
       appService.getAllApps(res).then(
         (result) => {
           res.json(result);
