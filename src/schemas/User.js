@@ -9,6 +9,11 @@ const UserSchema = new mongoose.Schema({
   last_login: String,
   role: Number,
   active: Number,
+  // Foreign Keys: One to Many
+  userIps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserIp', required: false }],
+  publishReviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PublishReview', required: false }],
+  appRatings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppRating', required: false }],
+  installedApps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'InstalledApp', required: false }],
 }, {
   timestamps: true,
 });
