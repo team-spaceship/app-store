@@ -1,6 +1,6 @@
 export default class AppService {
   getApps() {
-    return fetch(`http://localhost:3000/v1/apps`).then((response) => {
+    return fetch(`${process.env.REACT_APP_STORE_API}/apps`).then((response) => {
       return response.json();
     }).then((json) => {
       if (json.error === 404) {
