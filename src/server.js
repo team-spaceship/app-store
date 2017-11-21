@@ -8,6 +8,8 @@ import cors from 'cors';
 
 import OrderRoutes from "./routes/orderRoutes";
 import AppRoutes from "./routes/appRoutes";
+import CategoryRoutes from "./routes/categoryRoutes";
+
 
 const MongoStore = connectMongo(session);
 
@@ -30,6 +32,7 @@ app.use(cors());
 
 OrderRoutes.create(app);
 AppRoutes.create(app);
+CategoryRoutes.create(app);
 
 app.use(express.static(__dirname + '/../react-ui/build'));
 
