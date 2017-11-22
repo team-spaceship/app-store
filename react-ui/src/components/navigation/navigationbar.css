@@ -1,6 +1,7 @@
 .lumos-logo{
-    font-weight: 700;
-    color: #fff;
+    height: 50px;
+    margin-left: -16px;
+    margin-right:50px;
 }
 
 .nav-link{

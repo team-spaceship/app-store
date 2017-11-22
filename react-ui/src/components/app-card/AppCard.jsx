@@ -13,16 +13,16 @@ class AppCard extends Component {
     const { app } = this.props;
 
     return (
-      <div key={app.id} className="col">
+      <div key={app.id} className="col-md-3" onClick={() => {this.props.onAppSelect(this.props.app._id)}}>
         <div className="app--card">
           <div className="app--card-image"></div>
-          <div className="app--card-header">
-            <h3>{app.name}</h3>
-          </div>
           <div className="app--card-body">
+            <div className="app--card-header">
+              <h3>{app.name}</h3>
+            </div>
             <p>{app.description}</p>
+            <button type="button" className="btn btn-main">install</button>
           </div>
-          <button type="button" className="btn btn-main">install</button>
         </div>
       </div>
     );
@@ -31,7 +31,7 @@ class AppCard extends Component {
 
 AppCard.propTypes = {
   app: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

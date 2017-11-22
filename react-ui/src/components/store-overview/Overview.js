@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppService from '../../services/appService';
 import AppCard from '../app-card/AppCard';
+import { withRouter } from 'react-router-dom'
 
 import './overview.css'
 
@@ -9,8 +10,10 @@ class Overview extends Component {
     super(props);
 
     this.AppService = new AppService();
+
     this.state = {
       apps: [],
+      selectedApp: null
     };
 
     // Retrieve all apps.
@@ -25,10 +28,14 @@ class Overview extends Component {
     });
   }
 
+  onAppSelect = (id) =>{
+    this.props.history.push('/app/' + id +'/details')
+  }
+
   renderApps(apps) {
     if (apps && apps.length > 0) {
       return apps.map(app => (
-        <AppCard key={app.id} app={app} />
+        <AppCard key={app._id} app={app} onAppSelect={this.onAppSelect} />
       ));
     } else return [];
   }
@@ -40,20 +47,14 @@ class Overview extends Component {
         <section className="appstore-section">
           <h2>Lumos Originals</h2>
           <div className="row">
-            <AppCard key={"test1"} app={{ name: "Clock", description: "such app very wow" }} />
-            <AppCard key={"test2"} app={{ name: "Radio", description: "such app very wow" }} />
-            <AppCard key={"test3"} app={{ name: "Public Transport", description: "such app very wow" }} />
-            <AppCard key={"test4"} app={{ name: "Cooking", description: "such app very wow" }} />
+
           </div>
         </section>
 
         <section className="appstore-section">
           <h2>Featured Lumos Apps</h2>
           <div className="row">
-            <AppCard key={"test5"} app={{ name: "Clock", description: "such app very wow" }} />
-            <AppCard key={"test6"} app={{ name: "Radio", description: "such app very wow" }} />
-            <AppCard key={"test7"} app={{ name: "Public Transport", description: "such app very wow" }} />
-            <AppCard key={"test8"} app={{ name: "Cooking", description: "such app very wow" }} />
+
           </div>
         </section>
 
@@ -69,4 +70,6 @@ class Overview extends Component {
   }
 }
 
-export default Overview;
+
+const OverviewWithRouter = withRouter(Overview)
+export default OverviewWithRouter;

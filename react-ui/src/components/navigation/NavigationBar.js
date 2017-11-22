@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
+import LumosLogo from '../../images/lumosLogo.png'
 import './navigationbar.css'
 
 class NavigationBar extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand lumos-logo" href="#">Lumos Logo</a>
+      <nav className="navbar navbar-expand-lg">
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item ">
-              <a class="nav-link" href="#">Home</a>
+        <img src={LumosLogo} alt="" className="lumos-logo"/>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item ">
+              <a className="nav-link" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Features</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Login / Register</a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Login / Register</a>
             </li>
           </ul>
         </div>
