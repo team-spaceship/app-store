@@ -1,6 +1,6 @@
 import downloadController from "../controllers/downloadController";
 
-export default class AppRoutes {
+export default class DownloadRoutes {
   /**
   * Create the download routes.
   */
