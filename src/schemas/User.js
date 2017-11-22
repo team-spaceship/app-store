@@ -10,10 +10,10 @@ const UserSchema = new mongoose.Schema({
   role: Number,
   active: Number,
   // Foreign Keys: One to Many
-  userIps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserIp', required: false }],
-  publishReviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PublishReview', required: false }],
-  appRatings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppRating', required: false }],
-  installedApps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'InstalledApp', required: false }],
+  user_ips: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserIp', required: false }],
+  publish_reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PublishReview', required: false }],
+  app_ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppRating', required: false }],
+  installed_apps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'InstalledApp', required: false }],
 }, {
   timestamps: true,
 });

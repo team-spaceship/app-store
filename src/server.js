@@ -9,7 +9,7 @@ import cors from 'cors';
 import OrderRoutes from "./routes/orderRoutes";
 import AppRoutes from "./routes/appRoutes";
 import CategoryRoutes from "./routes/categoryRoutes";
-
+import DownloadRoutes from "./routes/downloadRoutes";
 
 const MongoStore = connectMongo(session);
 
@@ -33,8 +33,10 @@ app.use(cors());
 OrderRoutes.create(app);
 AppRoutes.create(app);
 CategoryRoutes.create(app);
+DownloadRoutes.create(app);
 
 app.use(express.static(__dirname + '/../react-ui/build'));
+app.use(express.static(__dirname + '/../apps'));
 
 app.get('*', (request, response) => {
   response.sendFile(__dirname + '/../react-ui/build/index.html');
