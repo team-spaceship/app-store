@@ -1,4 +1,6 @@
+import mongoose from 'mongoose';
 import App from '../schemas/App';
+import Version from '../schemas/Version';
 
 const appService = class AppService {
   /**
@@ -27,17 +29,45 @@ const appService = class AppService {
   }
   
   async createApp(app) {
+    const app_id = mongoose.Types.ObjectId();
+    const version_id = mongoose.Types.ObjectId();
+
+    // @TODO: add publish review when creating an app
+
+    const app_file_name = this.convertAppName(app.name);
+    
+    const versionScheme = new Version({
+      id: version_id,
+      version: app.version,
+      file_name: `${app_file_name}-${app.version}`,
+      publish_reviews: [],
+      app: app_id,
+    });
+    
     const appScheme = new App({
+      id: app_id,
       name: app.name,
       description: app.description,
       app_icon: app.app_icon,
       app_banner: app.app_banner,
       min_os_version: app.min_os_version,
-      version: app.version,
-    });    
+      versions: [version_id],
+      appDownloads: [],
+      appRatings: [],
+      appCategory: [],
+    });
     
-    await appScheme.save();
+    try {
+      await versionScheme.save();
+      await appScheme.save();
+    } catch (e) {
+      console.log(e);
+    }
   }
+
+  convertAppName(app_name) {
+    return app_name.split(' ').join('-');
+  }  
 };
 
 export default new appService();
