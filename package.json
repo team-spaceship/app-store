@@ -16,9 +16,11 @@
     "connect-mongo": "^2.0.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "express-fileupload": "^0.3.0",
     "express-session": "^1.15.5",
     "express-zip": "^2.0.1",
     "localenv": "^0.2.2",
+    "make-dir": "^1.1.0",
     "mongoose": "^4.12.6",
     "morgan": "^1.9.0"
   },
