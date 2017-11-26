@@ -13,6 +13,10 @@ const uploadController = class uploadController {
     const cssFile = req.files.cssFile;
     const appFolderName = req.body.name;
     const appPath = path.normalize(uploadFolderPath + "/" + appFolderName);
+    if (!(jsFile && cssFile && appFolderName)) {
+      res.status(500).send({ messsage: "Something went wrong while uploading files" });
+      return;
+    }
     makeDir(appPath).then(() => {
       jsFile.mv(appPath + "/" + jsFile.name, (err) => {
         if (err) {
