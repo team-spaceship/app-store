@@ -9,8 +9,8 @@ const uploadFolderPath = path.join(__dirname + "/../../apps");
 
 const uploadController = class uploadController {
   upload(req, res) {
-    const jsFile = req.files.jsFile;
-    const cssFile = req.files.cssFile;
+    const jsFile = [req.files.jsFile][0];
+    const cssFile = [req.files.cssFile][0];
     const appFolderName = req.body.name;
     const appPath = path.normalize(uploadFolderPath + "/" + appFolderName);
     if (!(jsFile && cssFile && appFolderName)) {
