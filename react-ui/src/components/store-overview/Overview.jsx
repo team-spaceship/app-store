@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import AppService from '../../services/appService';
 import AppCard from '../app-card/AppCard';
-import { withRouter } from 'react-router-dom'
 
 import './overview.css'
 
@@ -13,11 +13,14 @@ class Overview extends Component {
 
     this.state = {
       apps: [],
-      selectedApp: null
     };
 
     // Retrieve all apps.
     this.getApps();
+  }
+
+  onAppSelect(id) {
+    this.props.history.push('/app/' + id + '/details');
   }
 
   async getApps() {
@@ -26,10 +29,6 @@ class Overview extends Component {
     this.setState({
       apps,
     });
-  }
-
-  onAppSelect = (id) =>{
-    this.props.history.push('/app/' + id +'/details')
   }
 
   renderApps(apps) {

@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import AppService from '../../services/appService';
-import AppHeader from './AppHeader'
-import './appdetails.css'
+import AppHeader from './AppHeader';
+import './appdetails.css';
 
 class AppDetails extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.AppService = new AppService();
 
     this.state = {
-      app: null
-    }
+      app: null,
+    };
   }
 
   componentDidMount() {
-    this.getAppById(this.props.match.params.id)
+    this.getAppById(this.props.match.params.id);
   }
 
   async getAppById(id) {
@@ -44,7 +43,7 @@ class AppDetails extends Component {
         </div>
       );
     } else {
-      return null
+      return null;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './appCard.css'
+import './appCard.css';
 
 class AppCard extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class AppCard extends Component {
     const { app } = this.props;
 
     return (
-      <div key={app.id} className="col-md-3" onClick={() => {this.props.onAppSelect(this.props.app._id)}}>
+      <div key={app.id} className="col-md-3" onClick={() => { this.props.onAppSelect(this.props.app._id); }}>
         <div className="app--card">
           <div className="app--card-image"></div>
           <div className="app--card-body">

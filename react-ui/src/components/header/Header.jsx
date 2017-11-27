@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavigationBar from '../navigation/NavigationBar';
-
-import './header.css'
+import './header.css';
 
 class Header extends Component {
   render() {
