@@ -15,12 +15,12 @@ class Overview extends Component {
       apps: [],
     };
 
+    this.onAppSelect = (id) => {
+      this.props.history.push('/app/' + id + '/details');
+    };
+
     // Retrieve all apps.
     this.getApps();
-  }
-
-  onAppSelect(id) {
-    this.props.history.push('/app/' + id + '/details');
   }
 
   async getApps() {
