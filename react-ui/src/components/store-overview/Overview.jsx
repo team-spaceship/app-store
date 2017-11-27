@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import AppService from '../../services/appService';
-import AppCard from '../app-card/AppCard';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import AppService from "../../services/appService";
+import AppCard from "../app-card/AppCard";
 
-import './overview.css'
+import "./overview.css";
 
 class Overview extends Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: [],
+      apps: []
     };
 
-    this.onAppSelect = (id) => {
-      this.props.history.push('/app/' + id + '/details');
+    this.onAppSelect = id => {
+      this.props.history.push("/app/" + id + "/details");
     };
 
     // Retrieve all apps.
@@ -27,7 +27,7 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps,
+      apps
     });
   }
 
@@ -42,33 +42,24 @@ class Overview extends Component {
   render() {
     return (
       <div className="container">
-
         <section className="appstore-section">
           <h2>Lumos Originals</h2>
-          <div className="row">
-
-          </div>
+          <div className="row" />
         </section>
 
         <section className="appstore-section">
           <h2>Featured Lumos Apps</h2>
-          <div className="row">
-
-          </div>
+          <div className="row" />
         </section>
 
         <section className="appstore-section">
           <h2>All Lumos Apps</h2>
-          <div className="row">
-            {this.renderApps(this.state.apps)}
-          </div>
+          <div className="row">{this.renderApps(this.state.apps)}</div>
         </section>
-
       </div>
     );
   }
 }
 
-
-const OverviewWithRouter = withRouter(Overview)
+const OverviewWithRouter = withRouter(Overview);
 export default OverviewWithRouter;
