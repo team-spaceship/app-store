@@ -17,14 +17,14 @@ const appService = class AppService {
     
     return apps;
   }
-
+  
   async searchApps(query, res) {
     const apps = await App.find({ name: { $regex: '.*' + query + '.*', $options: "i" } }).exec();
-
+    
     if (!apps) {
       return res.status(400).end();
     }
-
+    
     return apps;
   }
   
@@ -63,6 +63,17 @@ const appService = class AppService {
     } catch (e) {
       console.log(e);
     }
+  }
+  
+  async getAppById(id, res) {
+    console.log(id);
+    const app = await App.findById(id).exec();
+    
+    if (!app) {
+      return res.status(400).end();
+    }
+    
+    return app;
   }
 
   convertAppName(app_name) {

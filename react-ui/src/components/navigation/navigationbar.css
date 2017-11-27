@@ -1,0 +1,13 @@
+.lumos-logo{
+    height: 50px;
+    margin-left: -16px;
+    margin-right:50px;
+}
+
+.nav-link{
+    color: #fff;
+}
+
+.nav-link:hover , .lumos-logo:hover{
+    color: #ff0080;
+}
