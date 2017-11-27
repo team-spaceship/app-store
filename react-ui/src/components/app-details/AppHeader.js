@@ -7,7 +7,7 @@ const AppHeader = (props) => {
       <NavigationBar />
       <div>
         <p className="lead app-lead">A plugin called</p>
-        <h1 className="display-3 intro-text">{props.appId}</h1>
+        <h1 className="display-3 intro-text">{props.name}</h1>
 
         <p className="lead">
           <button type="button" className="btn btn-main">Check it out!</button>
