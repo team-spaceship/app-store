@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "rules": {
     "no-param-reassign": "warn",
+    "no-unused-vars": "warn",
     "no-underscore-dangle": "warn",
     "max-len": [1, 120, 2, {"ignoreComments": true}],
     "camelcase": [0],

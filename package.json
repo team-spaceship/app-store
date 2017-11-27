@@ -17,6 +17,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "express-zip": "^2.0.1",
     "localenv": "^0.2.2",
     "mongoose": "^4.12.6",
     "morgan": "^1.9.0"
