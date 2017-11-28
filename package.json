@@ -24,7 +24,7 @@
   },
   "scripts": {
     "all": "yarn run frontend && yarn start",
-    "start": "babel-watch src/wrapper.js",
+    "start": "echo 'Starting app-store'; babel-watch src/wrapper.js",
     "frontend": "cd react-ui && ttab yarn start",
     "heroku-postbuild": "npm run build",
     "build": "babel src --out-dir lib --copy-files",
