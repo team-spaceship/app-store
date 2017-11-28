@@ -10,7 +10,9 @@ class Header extends Component {
           <NavigationBar />
 
           <div className="lumos-leader">
-            <h1>This is Lumos</h1>
+            <h1>WE ARE</h1>
+            <h1 className="title-blue">SPECIALIZED</h1>
+            <h1>COMPETENTIES</h1>
             <p className="lead">
               A smart, multipurpose beamer for displaying ambient information.
             </p>
