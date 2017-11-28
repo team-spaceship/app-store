@@ -12,10 +12,10 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: []
+      apps: [],
     };
 
-    this.onAppSelect = id => {
+    this.onAppSelect = (id) => {
       this.props.history.push("/app/" + id + "/details");
     };
 
@@ -27,7 +27,7 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps
+      apps,
     });
   }
 
