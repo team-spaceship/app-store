@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationBar from '../navigation/NavigationBar';
+import NavigationBar from '../../navigation/NavigationBar';
 
 const AppHeader = (props) => {
   return (
