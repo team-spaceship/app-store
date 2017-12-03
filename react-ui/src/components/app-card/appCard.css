@@ -3,12 +3,51 @@
     color: #030f33;
     box-sizing: border-box;
     margin-top: 25px;
+    transition: all 0.1s ease-in-out;    
+}
+
+.app--card:hover {
+    transform: scale(1.05);
 }
 
 .app--card-image{
+    position: relative;
     height:150px;
     width:100%;
+    overflow: hidden;
     background-color: blue;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.app--card-image:hover::before {
+    content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0,0,0,1));
+	opacity: .4; 
+}
+
+.app--card-image p{
+    display: none;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    z-index: 100;
+}
+
+.app--card-image img{
+    width: 100%;
+}
+
+.app--card-image:hover p {
+    display: inline-block;
 }
 
 .app--card-header h3{
@@ -19,4 +58,29 @@
 
 .app--card-body{
     padding: 10px;
+}
+
+.app--card-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.app--card-body p, h3{
+    color: #1a1a1a;
+}
+
+.app--card-button-tag {
+    position: relative;
+    top: 20px;
+}
+
+.btn-card {
+    font-size: 13px;
+    padding: 4px 26px;
+    cursor: pointer;
+}
+
+.btn-card:hover {
+    background-color: #030f33;
+    box-shadow: 0px 9px 24px 0px rgba(56, 37, 141, 0.31);
 }
