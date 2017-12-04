@@ -1,32 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import NavigationBar from "../navigation/NavigationBar";
 import "./header.css";
 
-class Header extends Component {
-  render() {
-    return (
-      <header>
-        <div className="container">
-          <NavigationBar />
+const Header = () => {
+  return (
+    <header>
+      <div className="container">
+        <NavigationBar />
 
-          <div className="lumos-leader">
-            <h1>WE ARE</h1>
-            <h1 className="title-blue">SPECIALIZED</h1>
-            <h1>COMPETENTIES</h1>
-            <p className="lead">
-              A smart, multipurpose beamer for displaying ambient information.
-            </p>
+        <div className="lumos-leader">
+          <h1>WE ARE</h1>
+          <h1 className="title-blue">SPECIALIZED</h1>
+          <h1>COMPETENTIES</h1>
+          <p className="lead">
+            A smart, multipurpose beamer for displaying ambient information.
+          </p>
 
-            <p className="lead">
-              <button type="button" className="btn btn-main">
-                Check it out!
-              </button>
-            </p>
-          </div>
+          <p className="lead">
+            <button type="button" className="btn btn-main">
+              Check it out!
+            </button>
+          </p>
         </div>
-      </header>
-    );
-  }
-}
+      </div>
+    </header>
+  );
+};
 
 export default Header;
