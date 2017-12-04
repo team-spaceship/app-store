@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppService from '../../services/appService';
+import AppService from '../../../services/appService';
 import AppHeader from './AppHeader';
 import './appdetails.css';
 
