@@ -17,15 +17,14 @@ export default class AppRoutes {
       });
     });
     router.post('/v1/saveProfile', authenticated, (req, res) => {
-/*      User.findOneAndUpdate(
-        { id: req.id },
+      User.findOneAndUpdate(
+        { _id: req.id },
         { 
           first_name: req.first_name,
           last_name: req.last_name,
           email: req.email,   
         }
-      );*/
-      console.log(req);
+      );
     });
   }  
 }
