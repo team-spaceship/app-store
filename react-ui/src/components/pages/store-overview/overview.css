@@ -1,8 +1,13 @@
+<<<<<<< HEAD
+.appstore-section {
+  margin-top: 50px;
+=======
 .appstore-section{
     margin-top:50px;
     margin-bottom: 50px;
+>>>>>>> d5d7194b656d35d3ccb485019d75c541d355ed2d
 }
 
-.appstore-section h2{
-    margin-bottom: 25px;
+.appstore-section h2 {
+  margin-bottom: 25px;
 }
