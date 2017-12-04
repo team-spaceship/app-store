@@ -35,8 +35,8 @@ class NavigationBar extends Component {
   showProfile() {
     if (this.state.loggedIn) {
       return (
-        <a className="nav-link" href="/app/profile">
-          Hi {this.state.user.first_name}
+        <a className="nav-link" href="/profile">
+          {this.state.user.first_name}&rsquo;s Profile
         </a>
       );  
     } else {

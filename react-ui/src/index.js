@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Background from "./components/background/Background";
 
 // Base styles
-import './index.css';
+import "./index.css";
 
 import Overview from './components/pages/store-overview/Overview';
 import AppDetails from './components/pages/app-details/AppDetails';
 import AppCreator from './components/pages/app-creator/AppCreator';
-import AppProfile from './components/pages/app-profile/AppProfile';
+import Profile from './components/pages/profile/Profile';
 
 ReactDOM.render(
   <Router>
@@ -19,9 +17,9 @@ ReactDOM.render(
       <Route exact path="/" component={Overview} />
       <Route path="/app/:id/details" component={AppDetails} />
       <Route path="/app/create" component={AppCreator} />
-      <Route path="/app/profile" component={AppProfile} />
+      <Route path="/profile" component={Profile} />
+      <Background />
     </div>
-  </Router>
-  , document.getElementById('root')
+  </Router>,
+  document.getElementById("root")
 );
-

@@ -12,8 +12,8 @@ const UserSchema = new mongoose.Schema({
   // Foreign Keys: One to Many
   user_ips: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserIp', required: false }],
   publish_reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PublishReview', required: false }],
-  app_ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppRating', required: false }],
-  installed_apps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'InstalledApp', required: false }],
+  version_ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'VersionRating', required: false }],
+  installed_versions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'InstalledVersion', required: false }],
 }, {
   timestamps: true,
 });
