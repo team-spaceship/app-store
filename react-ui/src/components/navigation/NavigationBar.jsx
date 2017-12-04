@@ -41,7 +41,7 @@ class NavigationBar extends Component {
       );  
     } else {
       return (
-        <a className="nav-link" href={process.env.REACT_APP_STORE_API + "/userInfo"}>
+        <a className="nav-link" href={process.env.REACT_APP_STORE_API + "/profile"}>
           Login / Register
         </a>
       );

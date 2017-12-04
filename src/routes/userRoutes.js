@@ -1,4 +1,5 @@
 import { authenticated } from '../middleware/passport';
+import User from '../schemas/User';
 
 export default class AppRoutes {
   /**
@@ -14,6 +15,17 @@ export default class AppRoutes {
         loggedIn,
         user: req && req.user,
       });
+    });
+    router.post('/v1/saveProfile', authenticated, (req, res) => {
+/*      User.findOneAndUpdate(
+        { id: req.id },
+        { 
+          first_name: req.first_name,
+          last_name: req.last_name,
+          email: req.email,   
+        }
+      );*/
+      console.log(req);
     });
   }  
 }

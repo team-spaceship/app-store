@@ -6,7 +6,6 @@ export default class userService {
     }).then((response) => {
       return response.json();
     }).then((json) => { 
-      console.log(json);
       return json;   
     }).catch((error) => {
       console.error(error);
