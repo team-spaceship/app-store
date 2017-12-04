@@ -1,6 +1,9 @@
 export default class userService {
-  isAuthenticated() {
-    return fetch(`${process.env.REACT_APP_STORE_API}/authenticated`).then((response) => {
+  getUserInfo() {
+    return fetch(`${process.env.REACT_APP_STORE_API}/userInfo`, {
+      credentials: 'include',
+      mode: 'cors',
+    }).then((response) => {
       return response.json();
     }).then((json) => { 
       console.log(json);

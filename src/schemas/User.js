@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+UserSchema.options.toJSON = {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret.google_id;
+    return ret;
+  },
+};
+
 mongoose.model('User', UserSchema);
 
 export default mongoose.model('User', UserSchema);

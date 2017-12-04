@@ -58,7 +58,7 @@ AppCard.propTypes = {
     app_icon: PropTypes.string.isRequired,
     app_banner: PropTypes.string.isRequired,
     min_os_version: PropTypes.string.isRequired,
-    version: PropTypes.string.isRequired,
+    version: PropTypes.string,
   }).isRequired,
 };
 

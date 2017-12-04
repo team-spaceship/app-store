@@ -11,6 +11,7 @@ class NavigationBar extends Component {
     this.UserService = new UserService();
     this.state = {
       loggedIn: false,
+      user: {},
     };
   }
 
@@ -19,28 +20,50 @@ class NavigationBar extends Component {
   }
 
   async checkUserLogin() {
-    const user = await this.UserService.isAuthenticated();
-    console.log(user.loggedIn);
+    const account_info = await this.UserService.getUserInfo();
+
+    if (!account_info.loggedIn) {
+      return;
+    }
+  
     this.setState({
-      loggedIn: user.loggedIn,
+      loggedIn: account_info.loggedIn,
+      user: account_info.user,
     });
   }
+
+  showProfile() {
+    if (this.state.loggedIn) {
+      return (
+        <a className="nav-link" href="/app/profile">
+          Hi {this.state.user.first_name}
+        </a>
+      );  
+    } else {
+      return (
+        <a className="nav-link" href={process.env.REACT_APP_STORE_API + "/userInfo"}>
+          Login / Register
+        </a>
+      );
+    }
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg">
         <img src={LumosLogo} alt="" className="lumos-logo" />
         <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item ">
-                <a className="nav-link" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href={process.env.REACT_APP_STORE_API + "/profile"} >{this.state.loggedIn ? 'Profile' : 'Login / Register'}</a>
-              </li>
-            </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item ">
+              <a className="nav-link" href="#">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Features</a>
+            </li>
+            <li className="nav-item">
+              { this.showProfile() }
+            </li>
+          </ul>
         </div>
       </nav>
     );

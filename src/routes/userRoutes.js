@@ -8,9 +8,12 @@ export default class AppRoutes {
     router.get('/v1/profile', authenticated, async (req, res) => {
       res.json(req.user);
     });
-    router.get('/v1/authenticated', (req, res) => {
+    router.get('/v1/userInfo', (req, res) => {
       const loggedIn = Boolean(req && req.user);
-      res.json({ loggedIn });
+      res.json({
+        loggedIn,
+        user: req && req.user,
+      });
     });
   }  
 }
