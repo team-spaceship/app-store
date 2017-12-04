@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import AppService from "../../../services/appService";
 import AppCard from "../../app-card/AppCard";
-import Header from '../../header/Header';
+import Header from "../../header/Header";
 
 import "./overview.css";
 
@@ -13,10 +13,10 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: [],
+      apps: []
     };
 
-    this.onAppSelect = (id) => {
+    this.onAppSelect = id => {
       this.props.history.push("/app/" + id + "/details");
     };
 
@@ -28,23 +28,33 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps,
+      apps
     });
   }
 
   renderApps(apps) {
     if (apps && apps.length > 0) {
       return apps.map(app => (
-        <AppCard key={"all" + app._id} app={app} onAppSelect={this.onAppSelect} />
+        <AppCard
+          key={"all" + app._id}
+          app={app}
+          onAppSelect={this.onAppSelect}
+        />
       ));
     } else return [];
   }
 
   renderFeaturedApps(apps) {
     if (apps && apps.length > 0) {
-      return apps.map((app) => {
+      return apps.map(app => {
         if (app.isFeatured) {
-          return <AppCard key={"featured" + app._id} app={app} onAppSelect={this.onAppSelect} />;
+          return (
+            <AppCard
+              key={"featured" + app._id}
+              app={app}
+              onAppSelect={this.onAppSelect}
+            />
+          );
         } else {
           return null;
         }

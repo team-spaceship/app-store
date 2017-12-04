@@ -21,7 +21,8 @@ passport.use(new Strategy(
         google_id: profile.id,
         first_name: profile.name.givenName,
         last_name: profile.name.familyName,
-        last_login: new Date(),        
+        last_login: new Date(),    
+        email: profile.emails[0].value,    
       },
       { upsert: true, new: true },
       cb,
@@ -46,7 +47,7 @@ middleware.use(passport.session());
 
 middleware.get(
   '/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }),
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
 
 middleware.get(
