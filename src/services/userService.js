@@ -6,7 +6,7 @@ const userService = class UserService {
       first_name: profile.name.givenName,
       middle_name: '',
       last_name: profile.name.familyName,
-      email: 'nietnodig@hoi.nl',
+      email: '',
       google_id: profile.id,
       last_login: new Date(),
       role: 1,
