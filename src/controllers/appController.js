@@ -44,6 +44,17 @@ const appController = class AppController {
       },
     ); 
   }
+
+  getAppById(req, res) {
+    appService.getAppById(req.params.id).then(
+      (result) => {
+        res.json(result);
+      },
+      (error) => {
+        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+      },
+    );
+  }
 };
 
 export default new appController();

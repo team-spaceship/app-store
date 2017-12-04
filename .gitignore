@@ -12,4 +12,4 @@ yarn-error.log*
 
 apps/projector*
 
-.idea
+/.idea

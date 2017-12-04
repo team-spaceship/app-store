@@ -5,14 +5,13 @@ import connectMongo from 'connect-mongo';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import upload from 'express-fileupload';
+import passport from './middleware/passport';
 
 import OrderRoutes from "./routes/orderRoutes";
 import AppRoutes from "./routes/appRoutes";
 import CategoryRoutes from "./routes/categoryRoutes";
 import DownloadRoutes from "./routes/downloadRoutes";
-import UploadRoutes from "./routes/uploadRoutes";
-
+import UserRoutes from "./routes/userRoutes";
 
 const MongoStore = connectMongo(session);
 
@@ -32,13 +31,13 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(upload());
+app.use(passport);
 
 OrderRoutes.create(app);
 AppRoutes.create(app);
 CategoryRoutes.create(app);
 DownloadRoutes.create(app);
-UploadRoutes.create(app);
+UserRoutes.create(app);
 
 app.use(express.static(__dirname + '/../react-ui/build'));
 app.use(express.static(__dirname + '/../apps'));
