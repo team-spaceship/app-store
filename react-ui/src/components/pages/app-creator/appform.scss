@@ -1,0 +1,33 @@
+@import '../../../index.scss';
+
+.form-container{
+    margin-top:25px;
+}
+
+.app-form{
+    margin-top: 25px;
+
+    .input-group{
+        display: block;
+        width: 100%;
+        margin-bottom: 25px;
+
+        label{
+            display: block;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .input-feedback{
+            color:$pink;
+            font-size: 14px;
+        }
+    
+        input[type="text"] {
+            width: 100%;
+            border-radius: 4px;
+            padding: 5px;
+            border: 1px solid #fff;
+        }
+    }
+}
