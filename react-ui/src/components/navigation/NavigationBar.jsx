@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import LumosLogo from '../../images/lumosLogo.png';
 import './navigationbar.css';
 import UserService from '../../services/userService';

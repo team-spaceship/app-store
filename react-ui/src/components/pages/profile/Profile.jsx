@@ -19,8 +19,9 @@ class Profile extends Component {
   }
 
   handleInputChange(event) {
-    this.state.user[event.target.name] = event.target.value;
-    this.setState(this.state);
+    let user = this.state.user;
+    user[event.target.name] = event.target.value;
+    this.setState(user);
   }
 
   async checkUserLogin() {
