@@ -16,17 +16,26 @@ export default class AppRoutes {
         user: req && req.user,
       });
     });
-    router.post('/v1/saveProfile', authenticated, (req, res) => {
-//      console.log(req.body.id + '\n' + req.body.first_name + '\n' + req.body.last_name + '\n' + req.body.email);
-      User.findOneAndUpdate(
-        { id: req.body.id },
-        { 
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          email: req.body.email,   
-        }
-      );
-      res.redirect('http://localhost:3001/profile');
+    router.post('/v1/saveProfile', authenticated, async (req, res) => {
+      try {
+        await User.findOneAndUpdate(
+          { _id: req.body.id },
+          { 
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,   
+          },
+          { upsert: true },
+        );
+      } catch (e) {
+        console.log(e);
+      }
+
+      if (req.headers.origin.indexOf('3001') !== -1) { // for development purposes
+        res.redirect('http://localhost:3001/profile');
+      }
+
+      res.redirect('/profile');
     });
   }  
 }
