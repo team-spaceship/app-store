@@ -12,6 +12,7 @@ import AppRoutes from "./routes/appRoutes";
 import CategoryRoutes from "./routes/categoryRoutes";
 import DownloadRoutes from "./routes/downloadRoutes";
 import UserRoutes from "./routes/userRoutes";
+import UploadRoutes from "./routes/uploadRoutes";
 
 const MongoStore = connectMongo(session);
 
@@ -38,6 +39,7 @@ AppRoutes.create(app);
 CategoryRoutes.create(app);
 DownloadRoutes.create(app);
 UserRoutes.create(app);
+UploadRoutes.create(app);
 
 app.use(express.static(__dirname + '/../react-ui/build'));
 app.use(express.static(__dirname + '/../apps'));

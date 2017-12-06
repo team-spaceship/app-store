@@ -6,6 +6,7 @@
   "author": "Team Spaceship",
   "license": "MIT",
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
@@ -18,13 +19,15 @@
     "express": "^4.15.4",
     "express-fileupload": "^0.3.0",
     "express-session": "^1.15.5",
+    "express-upload": "^0.1.0",
     "express-zip": "^2.0.1",
     "localenv": "^0.2.2",
     "make-dir": "^1.1.0",
     "mongoose": "^4.12.6",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "request": "^2.83.0"
   },
   "scripts": {
     "all": "yarn run frontend && yarn start",
