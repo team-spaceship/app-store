@@ -34,27 +34,25 @@ const appService = class AppService {
 
     // @TODO: add publish review when creating an app
 
-    const app_file_name = this.convertAppName(app.name);
-    
+    console.log(app);
+
     const versionScheme = new Version({
       id: version_id,
       version: app.version,
-      file_name: `${app_file_name}-${app.version}`,
-      publish_reviews: [],
+      description: app.description,
+      version_path: app.path,
+      version_note: "",
       app: app_id,
+      version_installs: [],
+      version_ratings: [],
+      publish_reviews: [],
     });
     
     const appScheme = new App({
-      id: app_id,
       name: app.name,
-      description: app.description,
-      app_icon: app.app_icon,
-      app_banner: app.app_banner,
-      min_os_version: app.min_os_version,
+      featured: false,
       versions: [version_id],
-      appDownloads: [],
-      appRatings: [],
-      appCategory: [],
+      app_category: [],
     });
     
     try {
@@ -75,10 +73,6 @@ const appService = class AppService {
     
     return app;
   }
-
-  convertAppName(app_name) {
-    return app_name.split(' ').join('-');
-  }  
 };
 
 export default new appService();
