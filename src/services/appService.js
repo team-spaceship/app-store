@@ -9,8 +9,8 @@ const appService = class AppService {
   * @returns [{orders}]
   */
   async getAllApps(res) {
-    const apps = await App.find().exec();
-    
+    const apps = await App.find().populate('versions').exec();
+
     if (!apps) {
       return res.status(400).end();
     }
@@ -37,7 +37,7 @@ const appService = class AppService {
     console.log(app);
 
     const versionScheme = new Version({
-      id: version_id,
+      _id: version_id,
       version: app.version,
       description: app.description,
       version_path: app.path,
@@ -47,17 +47,17 @@ const appService = class AppService {
       version_ratings: [],
       publish_reviews: [],
     });
-    
-    const appScheme = new App({
-      name: app.name,
-      featured: false,
-      versions: [version_id],
-      app_category: [],
-    });
-    
+
     try {
-      await versionScheme.save();
-      await appScheme.save();
+      versionScheme.save(async (err) => {
+        const appScheme = new App({
+          name: app.name,
+          featured: false,
+          versions: [versionScheme._id],
+          app_category: [],
+        });
+        await appScheme.save();
+      });
     } catch (e) {
       console.log(e);
     }

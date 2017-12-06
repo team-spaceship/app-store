@@ -1,10 +1,10 @@
+import appService from "../services/appService";
+
 const request = require('request');
 const fs = require('fs');
 const AdmZip = require('adm-zip');
 const makeDir = require('make-dir');
 const path = require('path');
-import appService from "../services/appService";
-
 
 const uploadFolderPath = path.join(__dirname + "/../../apps");
 
