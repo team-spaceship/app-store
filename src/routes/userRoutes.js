@@ -17,14 +17,16 @@ export default class AppRoutes {
       });
     });
     router.post('/v1/saveProfile', authenticated, (req, res) => {
+//      console.log(req.body.id + '\n' + req.body.first_name + '\n' + req.body.last_name + '\n' + req.body.email);
       User.findOneAndUpdate(
-        { _id: req.id },
+        { id: req.body.id },
         { 
-          first_name: req.first_name,
-          last_name: req.last_name,
-          email: req.email,   
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,   
         }
       );
+      res.redirect('http://localhost:3001/profile');
     });
   }  
 }

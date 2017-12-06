@@ -61,7 +61,7 @@ class Profile extends Component {
           </section>
           <section className="profile-section">
             <h2>Your devices</h2>
-            </section>
+          </section>
           <section className="profile-section">
             <h2>Your apps</h2>
           </section>
