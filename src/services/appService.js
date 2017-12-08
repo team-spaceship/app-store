@@ -9,8 +9,8 @@ const appService = class AppService {
   * @returns [{orders}]
   */
   async getAllApps(res) {
-    const apps = await App.find().exec();
-    
+    const apps = await App.find().populate('versions').exec();
+
     if (!apps) {
       return res.status(400).end();
     }
@@ -34,32 +34,30 @@ const appService = class AppService {
 
     // @TODO: add publish review when creating an app
 
-    const app_file_name = this.convertAppName(app.name);
-    
+    console.log(app);
+
     const versionScheme = new Version({
-      id: version_id,
+      _id: version_id,
       version: app.version,
-      file_name: `${app_file_name}-${app.version}`,
-      publish_reviews: [],
-      app: app_id,
-    });
-    
-    const appScheme = new App({
-      id: app_id,
-      name: app.name,
       description: app.description,
-      app_icon: app.app_icon,
-      app_banner: app.app_banner,
-      min_os_version: app.min_os_version,
-      versions: [version_id],
-      appDownloads: [],
-      appRatings: [],
-      appCategory: [],
+      version_path: app.path,
+      version_note: "",
+      app: app_id,
+      version_installs: [],
+      version_ratings: [],
+      publish_reviews: [],
     });
-    
+
     try {
-      await versionScheme.save();
-      await appScheme.save();
+      versionScheme.save(async (err) => {
+        const appScheme = new App({
+          name: app.name,
+          featured: false,
+          versions: [versionScheme._id],
+          app_category: [],
+        });
+        await appScheme.save();
+      });
     } catch (e) {
       console.log(e);
     }
@@ -75,10 +73,6 @@ const appService = class AppService {
     
     return app;
   }
-
-  convertAppName(app_name) {
-    return app_name.split(' ').join('-');
-  }  
 };
 
 export default new appService();
