@@ -1,29 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import LumosLogo from '../../images/lumosLogo.png';
 import './navigationbar.css';
+import UserService from '../../services/userService';
 
-const NavigationBar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg">
+class NavigationBar extends Component {
+  constructor(props) {
+    super(props);
 
-      <img src={LumosLogo} alt="" className="lumos-logo" />
+    this.UserService = new UserService();
+    this.state = {
+      loggedIn: false,
+      user: {},
+    };
+  }
 
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item ">
-            <Link to="/" className="nav-link">Home</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/app/create" className="nav-link">Create App</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">Login / Register</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
+  componentDidMount() {
+    this.checkUserLogin();
+  }
+
+  async checkUserLogin() {
+    const account_info = await this.UserService.getUserInfo();
+
+    if (!account_info.loggedIn) {
+      return;
+    }
+  
+    this.setState({
+      loggedIn: account_info.loggedIn,
+      user: account_info.user,
+    });
+  }
+
+  showProfile() {
+    if (this.state.loggedIn) {
+      return (
+        <a className="nav-link" href="/profile">
+          {this.state.user.first_name}&rsquo;s Profile
+        </a>
+      );  
+    } else {
+      return (
+        <a className="nav-link" href={process.env.REACT_APP_STORE_API + "/profile"}>
+          Login / Register
+        </a>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <nav className="navbar navbar-expand-lg">
+        <img src={LumosLogo} alt="" className="lumos-logo" />
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item ">
+              <a className="nav-link" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Features</a>
+            </li>
+            <li className="nav-item">
+              { this.showProfile() }
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
 
 export default NavigationBar;

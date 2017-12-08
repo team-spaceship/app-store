@@ -13,7 +13,7 @@ const Header = () => {
           <h1 className="title-blue">SPECIALIZED</h1>
           <h1>COMPETENTIES</h1>
           <p className="lead">
-            A smart, multipurpose beamer for displaying ambient information.
+            A smart, multipurpose projector for displaying ambient information.
           </p>
 
           <p className="lead">
