@@ -5,6 +5,8 @@ body {
   padding: 0;
   background-color: #030f33;
   color: #fff; }
+  body > div {
+    overflow: hidden; }
 
 .background {
   position: absolute;
@@ -27,12 +29,17 @@ h4 {
 
 h1 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 300 !important;
   line-height: 1.2;
   margin: 0 0 2px; }
 
 .title-blue {
-  color: #06fefe; }
+  color: #06fefe;
+  font-weight: 600 !important;
+  background-image: -webkit-linear-gradient(92deg, #06fefe, #37bddf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 80s infinite linear; }
 
 .lumos-leader {
   max-width: 460px;
@@ -79,12 +86,12 @@ Buttons
 
 -------------------------------- */
 .btn {
-  background-color: #ff0080;
-  box-shadow: 0px 9px 24px 0px rgba(244, 40, 143, 0.31);
-  color: #fff;
+  background-color: #fff;
+  color: #030f33;
   font-weight: 500;
   margin: 10px 0 10px 0;
-  border-radius: 0; }
+  border-radius: 20px;
+  padding: 8px 33px; }
 
 .btn:focus {
   outline: none; }
@@ -94,7 +101,7 @@ Buttons
 
 @media only screen and (min-width: 768px) {
   .btn {
-    font-size: 16px; } }
+    font-size: 15px; } }
 
 /* -------------------------------- 
 
@@ -108,6 +115,12 @@ Assets
     width: 100%;
     height: 10px;
     background: linear-gradient(#fff000, #fff); }
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg); }
+  to {
+    -webkit-filter: hue-rotate(360deg); } }
 
 .form-container {
   margin-top: 25px; }
