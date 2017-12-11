@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LumosLogo from '../../images/lumosLogo.png';
-import './navigationbar.css';
+import './navigationBar.css';
 import UserService from '../../services/userService';
 
 class NavigationBar extends Component {
@@ -50,7 +50,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg">
-        <img src={LumosLogo} alt="" className="lumos-logo" />
+        <a href="/"><img src={LumosLogo} alt="" className="lumos-logo" /></a>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
