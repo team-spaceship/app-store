@@ -11,3 +11,7 @@
 .nav-link:hover , .lumos-logo:hover{
     color: #ff0080;
 }
+
+.navbar-expand-lg .collapse.navbar-collapse {
+    flex-flow: row-reverse;
+}

@@ -13,10 +13,10 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: []
+      apps: [],
     };
 
-    this.onAppSelect = id => {
+    this.onAppSelect = (id) => {
       this.props.history.push("/app/" + id + "/details");
     };
 
@@ -28,7 +28,7 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps
+      apps,
     });
   }
 
@@ -45,21 +45,20 @@ class Overview extends Component {
   }
 
   renderFeaturedApps(apps) {
+    const featuredApps = [];
     if (apps && apps.length > 0) {
-      return apps.map(app => {
-        if (app.isFeatured) {
-          return (
+      apps.forEach((app) => {
+        if (app.featured) {
+          featuredApps.push(
             <AppCard
               key={"featured" + app._id}
               app={app}
               onAppSelect={this.onAppSelect}
-            />
-          );
-        } else {
-          return null;
+            />);
         }
       });
-    } else return [];
+    }
+    return featuredApps;
   }
 
   render() {
@@ -67,10 +66,14 @@ class Overview extends Component {
       <div>
         <Header />
         <div className="container">
-          <section className="appstore-section">
-            <h2>Featured Lumos Apps</h2>
-            <div className="row" />
-          </section>
+          {this.renderFeaturedApps(this.state.apps).length > 0 &&
+            <section className="appstore-section">
+              <h2>Featured Lumos Apps</h2>
+              <div className="row">
+                {this.renderFeaturedApps(this.state.apps)}
+              </div>
+            </section>
+          }
 
           <section className="appstore-section">
             <h2>All Lumos Apps</h2>
