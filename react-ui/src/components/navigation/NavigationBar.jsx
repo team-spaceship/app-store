@@ -21,7 +21,7 @@ class NavigationBar extends Component {
   async checkUserLogin() {
     const account_info = await this.UserService.getUserInfo();
 
-    if (!account_info.loggedIn) {
+    if (!account_info) {
       return;
     }
   
