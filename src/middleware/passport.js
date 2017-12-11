@@ -52,9 +52,8 @@ middleware.get(
 
 middleware.get(
   '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    console.log("callback");
     // Successful authentication, redirect home.
     res.redirect('/');
   },

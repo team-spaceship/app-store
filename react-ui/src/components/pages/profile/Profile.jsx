@@ -19,7 +19,7 @@ class Profile extends Component {
   }
 
   handleInputChange(event) {
-    let user = this.state.user;
+    const user = this.state.user;
     user[event.target.name] = event.target.value;
     this.setState(user);
   }
