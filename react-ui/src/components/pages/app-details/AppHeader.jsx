@@ -10,7 +10,7 @@ const AppHeader = (props) => {
         <h1 className="display-3 intro-text">{props.name}</h1>
 
         <p className="lead">
-          <button type="button" className="btn btn-main">Check it out!</button>
+          <button type="button" className="btn btn-main" onClick={(e) => { props.installApp(props.appId); }}>Install</button>
         </p>
       </div>
     </div>

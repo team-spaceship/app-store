@@ -55,6 +55,17 @@ const appController = class AppController {
       },
     );
   }
+
+  install(req, res) {
+    appService.install(req.params.id).then(
+      (result) => {
+        res.json(result);
+      },
+      (error) => {
+        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+      },
+    );
+  }  
 };
 
 export default new appController();

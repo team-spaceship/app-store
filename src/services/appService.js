@@ -73,6 +73,16 @@ const appService = class AppService {
     
     return app;
   }
+
+  async install(id, res) {
+    const app = await App.findById(id).exec();
+
+    if (!app) {
+      return res.status(400).end();
+    }
+
+    return app;
+  }  
 };
 
 export default new appService();
