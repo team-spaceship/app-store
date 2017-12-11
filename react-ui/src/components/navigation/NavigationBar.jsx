@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LumosLogo from '../../images/lumosLogo.png';
-import './navigationbar.css';
+import './navigationBar.css';
 import UserService from '../../services/userService';
 
 class NavigationBar extends Component {
