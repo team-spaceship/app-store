@@ -16,7 +16,7 @@ const appController = class AppController {
           res.json(result);
         },
         () => {
-          res.status(500).send({ messsage: "Something went wrong" });
+          res.status(500).send({ message: "Something went wrong" });
         },
       );
     } else { // If no query parameter is given, return all apps.
@@ -25,7 +25,7 @@ const appController = class AppController {
           res.json(result);
         },
         () => {
-          res.status(500).send({ messsage: "Something went wrong" });
+          res.status(500).send({ message: "Something went wrong" });
         },
       );
     }
@@ -39,7 +39,7 @@ const appController = class AppController {
         res.json(result);
       },
       (error) => {
-        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+        res.status(500).send({ message: "Something went wrong: " + error.message });
       },
     ); 
   }
@@ -47,12 +47,10 @@ const appController = class AppController {
   getAppById(req, res) {
     appService.getAppById(req.params.id, req.user).then(
       (result) => {
-        console.log(result);
         res.json(result);
       },
       (error) => {
-        console.log(error);
-        res.status(500).send({ messsage: "Something went wrong: " + error });
+        res.status(500).send({ message: "Something went wrong: " + error });
       },
     );
   }
@@ -63,7 +61,7 @@ const appController = class AppController {
         res.json(result);
       },
       (error) => {
-        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+        res.status(500).send({ message: "Something went wrong: " + error.message });
       },
     );
   }
@@ -74,7 +72,7 @@ const appController = class AppController {
         res.json(result);
       },
       (error) => {
-        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+        res.status(500).send({ message: "Something went wrong: " + error.message });
       },
     );
   }  
