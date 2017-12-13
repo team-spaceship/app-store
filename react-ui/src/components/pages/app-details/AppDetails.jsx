@@ -35,7 +35,7 @@ class AppDetails extends Component {
       return (
         <header>
           <div className="container">
-            <AppHeader appId={this.props.match.params.id} name={this.state.app.name} installApp={this.installApp} />
+            <AppHeader appId={this.props.match.params.id} app={this.state.app} installApp={this.installApp} />
           </div>
           <div className="container-light">
             <div className="container">

@@ -15,7 +15,10 @@ export default class AppService {
   }
 
   getAppById(id) {
-    return fetch(`${process.env.REACT_APP_STORE_API}/apps/` + id).then((response) => {
+    return fetch(`${process.env.REACT_APP_STORE_API}/apps/` + id, {
+      credentials: 'include',
+      mode: 'cors',
+    }).then((response) => {
       return response.json();
     }).then((json) => {
       if (json.error === 404) {
@@ -30,7 +33,10 @@ export default class AppService {
   }
 
   installApp(id) {
-    return fetch(`${process.env.REACT_APP_STORE_API}/apps/install/${id}`).then((response) => {
+    return fetch(`${process.env.REACT_APP_STORE_API}/apps/install/${id}`, {
+      credentials: 'include',
+      mode: 'cors',      
+    }).then((response) => {
       return response.json();
     }).then((json) => {
       if (json.error === 404) {

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import App from '../schemas/App';
 import Version from '../schemas/Version';
+import InstalledVersion from '../schemas/InstalledVersion';
 
 const appService = class AppService {
   /**
@@ -34,8 +35,6 @@ const appService = class AppService {
 
     // @TODO: add publish review when creating an app
 
-    console.log(app);
-
     const versionScheme = new Version({
       _id: version_id,
       version: app.version,
@@ -63,26 +62,69 @@ const appService = class AppService {
     }
   }
   
-  async getAppById(id, res) {
-    console.log(id);
+  async getAppById(id, user) {
     const app = await App.findById(id).exec();
-    
-    if (!app) {
-      return res.status(400).end();
+    const detail_app = app.toObject();
+
+    detail_app.is_installed = 0;
+
+    if (user) {
+      const latest_version = await this.getLatestAppVersionByAppId(id);
+      const is_installed = await this.getInstalledApp(latest_version._id, user._id);
+
+      detail_app.is_installed = is_installed.length;
     }
     
-    return app;
+    return detail_app;
   }
 
-  async install(id, res) {
-    const app = await App.findById(id).exec();
+  async getLatestAppVersionByAppId(id) {
+    const app = await App.findById(id).populate('versions').exec();
+    const latest_version = app.versions[app.versions.length - 1];
+    return latest_version;
+  }
 
-    if (!app) {
-      return res.status(400).end();
-    }
+  async getInstalledAppsByUserId(user_id) {
+    const user_apps = await InstalledVersion
+      .find({ user: user_id })
+      .populate('user')
+      .populate('version')
+      .exec();
 
-    return app;
+    return user_apps;
+  }
+
+  async getInstalledApp(version_id, user_id) {
+    const user_apps = await InstalledVersion
+      .find({
+        version: version_id,
+        user: user_id,
+      })
+      .exec();
+
+    return user_apps;
   }  
+
+  async install(id, user) {
+    try {
+      const latest_version = await this.getLatestAppVersionByAppId(id);
+      const is_installed = await this.getInstalledApp(latest_version._id, user._id);
+
+      if (is_installed.length > 0) {
+        throw new Error("App already installed.");
+      }
+
+      const installedVersionScheme = new InstalledVersion({
+        user: user._id,
+        version: latest_version,
+      });
+
+      await installedVersionScheme.save();
+    } catch (e) {
+      console.error(e);
+      return e.message;
+    }
+  }
 };
 
 export default new appService();
