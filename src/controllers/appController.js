@@ -31,7 +31,6 @@ const appController = class AppController {
     }
   }
 
-
   createApp(req, res) {
     // Save the body, for easier use later on.
     const app = req.body;
@@ -46,7 +45,20 @@ const appController = class AppController {
   }
 
   getAppById(req, res) {
-    appService.getAppById(req.params.id).then(
+    appService.getAppById(req.params.id, req.user).then(
+      (result) => {
+        console.log(result);
+        res.json(result);
+      },
+      (error) => {
+        console.log(error);
+        res.status(500).send({ messsage: "Something went wrong: " + error });
+      },
+    );
+  }
+
+  install(req, res) {
+    appService.install(req.params.id, req.user).then(
       (result) => {
         res.json(result);
       },
@@ -55,6 +67,17 @@ const appController = class AppController {
       },
     );
   }
+
+  installedApps(req, res) {
+    appService.getInstalledAppsByUserId(req.user._id).then(
+      (result) => {
+        res.json(result);
+      },
+      (error) => {
+        res.status(500).send({ messsage: "Something went wrong: " + error.messsage });
+      },
+    );
+  }  
 };
 
 export default new appController();
