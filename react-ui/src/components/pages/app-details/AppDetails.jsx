@@ -14,7 +14,12 @@ class AppDetails extends Component {
     };
 
     this.installApp = (appId) => {
-      this.AppService.installApp(appId);
+      this.AppService.installApp(appId).then(() => {
+        const installed_app = Object.assign({}, this.state.app);
+        installed_app.is_installed = true;   
+
+        this.setState({ app: installed_app });
+      });
     };
   }
 
