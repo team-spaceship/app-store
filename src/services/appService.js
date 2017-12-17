@@ -89,6 +89,10 @@ const appService = class AppService {
       .find({ user: user_id })
       .populate('user')
       .populate('version')
+      .populate({
+        path: 'version',
+        populate: { path: 'app' },
+      })
       .exec();
 
     return user_apps;
