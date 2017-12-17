@@ -8,6 +8,8 @@ export default class AppRoutes {
   static create(router) {
     router.get('/v1/apps', appController.getAllApps);
 
+    router.get('/v1/installed-apps', authenticated, appController.installedApps);
+    
     router.get('/v1/apps/:id', appController.getAppById);
 
     router.get('/v1/apps/install/:id', authenticated, appController.install);
