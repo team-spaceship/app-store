@@ -1,3 +1,4 @@
+import { authenticated } from '../middleware/passport';
 import appController from "../controllers/appController";
 
 export default class AppRoutes {
@@ -8,6 +9,8 @@ export default class AppRoutes {
     router.get('/v1/apps', appController.getAllApps);
 
     router.get('/v1/apps/:id', appController.getAppById);
+
+    router.get('/v1/apps/install/:id', authenticated, appController.install);
     
     router.post('/v1/apps', appController.createApp);
   }  

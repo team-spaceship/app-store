@@ -1,11 +1,14 @@
 import React from 'react';
 import Header from "../../header/Header";
-import LightBulb from '../../../images/LightBulb.png';
 import AppCard from "../../app-card/AppCard";
+import CTABar from "../../CTA-bar/CTA-bar";
+import LightBulb from '../../../images/LightBulb.png';
+
 
 import "./landingpage.css";
 
 const LandingPage = () => {
+  const title = "WHAT'S NEW";
   return (
     <div>
       <Header />
@@ -31,7 +34,7 @@ const LandingPage = () => {
       <div className="wrapper--bg">
         <div className="container">
           <section className="wrapper--specs">
-            <div><h2>WHAT'S <br /> INSIDE</h2></div>
+            <div><h2>WHAT'S <br /> NEW</h2></div>
             <div>
               <ul>
                 <li><img src={LightBulb} alt="lightbulb icon" />INCLUDES A MOBILE APP</li>

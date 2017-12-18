@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import App from '../schemas/App';
 import Version from '../schemas/Version';
+import InstalledVersion from '../schemas/InstalledVersion';
 
 const appService = class AppService {
   /**
@@ -9,8 +10,8 @@ const appService = class AppService {
   * @returns [{orders}]
   */
   async getAllApps(res) {
-    const apps = await App.find().exec();
-    
+    const apps = await App.find().populate('versions').exec();
+
     if (!apps) {
       return res.status(400).end();
     }
@@ -34,51 +35,96 @@ const appService = class AppService {
 
     // @TODO: add publish review when creating an app
 
-    const app_file_name = this.convertAppName(app.name);
-    
     const versionScheme = new Version({
-      id: version_id,
+      _id: version_id,
       version: app.version,
-      file_name: `${app_file_name}-${app.version}`,
-      publish_reviews: [],
-      app: app_id,
-    });
-    
-    const appScheme = new App({
-      id: app_id,
-      name: app.name,
       description: app.description,
-      app_icon: app.app_icon,
-      app_banner: app.app_banner,
-      min_os_version: app.min_os_version,
-      versions: [version_id],
-      appDownloads: [],
-      appRatings: [],
-      appCategory: [],
+      version_path: app.path,
+      version_note: "",
+      app: app_id,
+      version_installs: [],
+      version_ratings: [],
+      publish_reviews: [],
     });
-    
+
     try {
-      await versionScheme.save();
-      await appScheme.save();
+      versionScheme.save(async (err) => {
+        const appScheme = new App({
+          name: app.name,
+          featured: false,
+          versions: [versionScheme._id],
+          app_category: [],
+        });
+        await appScheme.save();
+      });
     } catch (e) {
       console.log(e);
     }
   }
   
-  async getAppById(id, res) {
-    console.log(id);
+  async getAppById(id, user) {
     const app = await App.findById(id).exec();
-    
-    if (!app) {
-      return res.status(400).end();
+    const detail_app = app.toObject();
+
+    detail_app.is_installed = 0;
+
+    if (user) {
+      const latest_version = await this.getLatestAppVersionByAppId(id);
+      const is_installed = await this.getInstalledApp(latest_version._id, user._id);
+
+      detail_app.is_installed = is_installed.length;
     }
     
-    return app;
+    return detail_app;
   }
 
-  convertAppName(app_name) {
-    return app_name.split(' ').join('-');
+  async getLatestAppVersionByAppId(id) {
+    const app = await App.findById(id).populate('versions').exec();
+    const latest_version = app.versions[app.versions.length - 1];
+    return latest_version;
+  }
+
+  async getInstalledAppsByUserId(user_id) {
+    const user_apps = await InstalledVersion
+      .find({ user: user_id })
+      .populate('user')
+      .populate('version')
+      .exec();
+
+    return user_apps;
+  }
+
+  async getInstalledApp(version_id, user_id) {
+    const user_apps = await InstalledVersion
+      .find({
+        version: version_id,
+        user: user_id,
+      })
+      .exec();
+
+    return user_apps;
   }  
+
+  async install(id, user) {
+    try {
+      const latest_version = await this.getLatestAppVersionByAppId(id);
+      const is_installed = await this.getInstalledApp(latest_version._id, user._id);
+
+      if (is_installed.length > 0) {
+        throw new Error("App already installed.");
+      }
+
+      const installedVersionScheme = new InstalledVersion({
+        user: user._id,
+        version: latest_version,
+      });
+
+      await installedVersionScheme.save();
+    } catch (e) {
+      console.error(e);
+      return e.message;
+    }
+  }
 };
 
 export default new appService();

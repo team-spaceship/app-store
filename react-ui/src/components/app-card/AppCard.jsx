@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-
 import "./appCard.css";
 
 class AppCard extends Component {
@@ -12,11 +10,13 @@ class AppCard extends Component {
   render() {
     const { app } = this.props;
 
+    const latest_version = app.versions[app.versions.length - 1];
+
     function appDescriptionTrim() {
-      if (app.description.length > 140) {
-        return app.description.slice(0, 140) + "...";
+      if (latest_version.description.length > 140) {
+        return latest_version.description.slice(0, 140) + "...";
       } else {
-        return app.description;
+        return latest_version.description;
       }
     }
 
@@ -39,29 +39,15 @@ class AppCard extends Component {
             className="button"
             href="#"
             onClick={() => {
-              this.props.onAppSelect(this.props.app._id);
+              latest_version.onAppSelect(latest_version.app._id);
             }}
           >
-            Install
+            Details
           </button>
         </div>
       </div>
     );
   }
 }
-
-AppCard.propTypes = {
-  app: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    app_icon: PropTypes.string.isRequired,
-    app_banner: PropTypes.string.isRequired,
-    min_os_version: PropTypes.string.isRequired,
-    version: PropTypes.string.isRequired
-  }).isRequired
-};
 
 export default AppCard;

@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NavigationBar from '../../navigation/NavigationBar';
 
-const AppHeader = (props) => {
-  return (
-    <div>
-      <NavigationBar />
-      <div>
-        <p className="lead app-lead">A plugin called</p>
-        <h1 className="display-3 intro-text">{props.name}</h1>
+class AppHeader extends Component {
+  constructor(props) {
+    super(props);  
+    this.state = {};
+  }
 
-        <p className="lead">
-          <button type="button" className="btn btn-main">Check it out!</button>
-        </p>
+  installApp() {
+    if (this.props.app.is_installed) {
+      return (
+        <button type="button" className="btn btn-main" disabled>
+          Installed
+        </button>        
+      );
+    }
+    return (
+      <button type="button" className="btn btn-main" onClick={(e) => { this.props.installApp(this.props.appId); }}>
+        Install
+      </button>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <NavigationBar />
+        <div className="detail-head row">
+          <div className="col-md-4">
+            <p className="lead app-lead">A plugin called</p>
+            <h1 className="display-3 intro-text">{this.props.app.name}</h1>
+            <p className="lead">
+              {this.installApp()}
+            </p>
+          </div>
+          <div className="col-md-7 offset-md-1">
+            <div className="excerpt">
+              Sed hendrerit metus quis est volutpat, vel molestie sapien luctus. Curabitur a tortor nec sem dignissim rutrum. Cras eu nulla pellentesque massa dignissim iaculis.
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default AppHeader;
