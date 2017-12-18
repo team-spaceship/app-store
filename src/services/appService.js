@@ -50,6 +50,7 @@ const appService = class AppService {
     try {
       versionScheme.save(async (err) => {
         const appScheme = new App({
+          _id: app_id,
           name: app.name,
           featured: false,
           versions: [versionScheme._id],
