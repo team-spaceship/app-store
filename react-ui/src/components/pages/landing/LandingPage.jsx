@@ -67,7 +67,7 @@ const LandingPage = () => {
       <div className="wrapper--bg">
         <div className="container">
           <section className="wrapper--specs">
-            <div><h2>ARE YOU <br /> <span>INSPIRED</span> <br /> TO MAKE AN APP?</h2></div>
+            <div><h2>ARE YOU <br /> <span className="span-title">INSPIRED</span> <br /> TO MAKE AN APP?</h2></div>
           </section>
         </div>
         <h1 className="bg--text right">ARE YOU <br /> INSPIRED? <br /></h1>

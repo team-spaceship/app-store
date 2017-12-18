@@ -24,6 +24,15 @@ body {
   z-index: 0;
 }
 
+.btn.btn-main {
+  cursor: pointer;
+  transition: all 0.2s ease 0.1s;
+  &:hover {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+}
 
 /* -------------------------------- 
 
