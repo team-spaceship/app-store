@@ -9,6 +9,6 @@ export default class UploadRoutes {
    * @param routerController that handles the requests.
    */
   static create(router) {
-    router.post('/upload', uploadController.upload);
+    router.post('/v1/upload', uploadController.upload);
   }
 }

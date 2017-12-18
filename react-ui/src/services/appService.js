@@ -6,9 +6,9 @@ export default class AppService {
       if (json.error === 404) {
         throw new Error("No apps were found.");
       }
-    
+
       console.log(json);
-      return json;   
+      return json;
     }).catch((error) => {
       this.errorToJson(error);
     });
@@ -24,9 +24,33 @@ export default class AppService {
       if (json.error === 404) {
         throw new Error("No apps were found.");
       }
-    
+
       console.log(json);
-      return json;   
+      return json;
+    }).catch((error) => {
+      this.errorToJson(error);
+    });
+  }
+
+  submitApp(appDetails) {
+    return fetch(`${process.env.REACT_APP_STORE_API}/upload/`, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'POST',
+      body: JSON.stringify(appDetails),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.error === 404) {
+        throw new Error("App upload failed");
+      }
+
+      console.log(json);
+      return json;
     }).catch((error) => {
       this.errorToJson(error);
     });
@@ -35,7 +59,7 @@ export default class AppService {
   installApp(id) {
     return fetch(`${process.env.REACT_APP_STORE_API}/apps/install/${id}`, {
       credentials: 'include',
-      mode: 'cors',      
+      mode: 'cors',
     }).then((response) => {
       return response.json();
     }).then((json) => {
