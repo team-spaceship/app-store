@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from "../../header/Header";
 import AppCard from "../../app-card/AppCard";
-import CTABar from "../../CTA-bar/CTA-bar";
 import LightBulb from '../../../images/LightBulb.png';
 
 
