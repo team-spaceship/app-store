@@ -19,7 +19,9 @@ class Overview extends Component {
     this.onAppSelect = (id) => {
       this.props.history.push("/app/" + id + "/details");
     };
+  }
 
+  componentDidMount() {
     // Retrieve all apps.
     this.getApps();
   }

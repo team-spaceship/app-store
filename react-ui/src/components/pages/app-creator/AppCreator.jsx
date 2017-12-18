@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppForm from './AppForm';
 import NavigationBar from '../../navigation/NavigationBar';
+import AppService from "../../../services/appService";
+import { withRouter } from "react-router-dom";
 
 class AppCreator extends Component {
   constructor() {
     super();
 
-    this.state = {
-      temporaryTitle: "Create Lumos App",
-    };
+    this.AppService = new AppService();
   }
 
-  handleFormSubmit(app) {
-    // temporary untill backend call to create an app is present
-    console.log(app);
+  handleFormSubmit = (app) => {
+    this.AppService.submitApp(app);
+    this.props.history.push("/");
   }
 
   render() {
@@ -23,11 +23,11 @@ class AppCreator extends Component {
         <NavigationBar />
 
         <div className="form-container"> 
-          <h2>{this.state.temporaryTitle}</h2>
+          <h2>Create Lumos App</h2>
           <p className="form-information">
             Please provide us with the information necessary Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque facere beatae nostrum laudantium unde sunt quidem. Fugiat explicabo eum facilis eius, deleniti rerum similique, at error natus consequuntur saepe accusamus?
           </p>
-          <AppForm handleFormSubmit={this.handleFormSubmit} app={{ appname: 'hodor', version: '1', description: '', apprepository: '' }} />
+          <AppForm handleFormSubmit={this.handleFormSubmit} app={{ name: '', version: '', description: '', url: '' }} />
         </div>
       </div>
     );
@@ -39,4 +39,5 @@ AppCreator.propTypes = {
 
 };
 
-export default AppCreator;
+const AppCreatorWithRouter = withRouter(AppCreator);
+export default AppCreatorWithRouter;
