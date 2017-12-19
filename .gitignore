@@ -13,6 +13,4 @@ yarn-error.log*
 # Sass
 react-ui/**/*.css
 
-apps/projector*
-
 /.idea
