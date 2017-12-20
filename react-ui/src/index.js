@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Background from "./components/background/Background";
 
 // Base styles
@@ -11,15 +11,19 @@ import AppDetails from "./components/pages/app-details/AppDetails";
 import AppCreator from "./components/pages/app-creator/AppCreator";
 import Profile from "./components/pages/profile/Profile";
 import LandingPage from "./components/pages/landing/LandingPage";
+import NoMatch from "./components/pages/no-match/FourOFour";
 
 ReactDOM.render(
   <Router>
     <div>
-      <Route exact path="/" component={Overview} />
-      <Route path="/app/:id/details" component={AppDetails} />
-      <Route path="/app/create" component={AppCreator} />
-      <Route path="/landing" component={LandingPage} />
-      <Route path="/profile" component={Profile} />
+      <Switch>
+        <Route exact path="/" component={Overview} />
+        <Route path="/app/:id/details" component={AppDetails} />
+        <Route path="/app/create" component={AppCreator} />
+        <Route path="/landing" component={LandingPage} />
+        <Route path="/profile" component={Profile} />
+        <Route component={NoMatch} />
+      </Switch>
       <Background />
     </div>
   </Router>,
