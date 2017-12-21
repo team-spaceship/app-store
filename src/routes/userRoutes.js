@@ -1,7 +1,7 @@
 import { authenticated } from '../middleware/passport';
 import User from '../schemas/User';
 
-export default class AppRoutes {
+export default class UserRoutes {
   /**
   * Create the app routes.
   */

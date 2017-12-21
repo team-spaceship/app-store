@@ -10,7 +10,7 @@ class NavigationBar extends Component {
     this.UserService = new UserService();
     this.state = {
       loggedIn: false,
-      user: {}
+      user: {},
     };
   }
 
@@ -27,7 +27,7 @@ class NavigationBar extends Component {
 
     this.setState({
       loggedIn: account_info.loggedIn,
-      user: account_info.user
+      user: account_info.user,
     });
   }
 
