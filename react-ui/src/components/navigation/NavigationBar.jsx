@@ -53,7 +53,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg">
-        <a href="/">
+        <a href="/" className="header-logo">
           <img src={LumosLogo} alt="" className="lumos-logo" />
         </a>
         <div className="collapse navbar-collapse" id="navbarNav">
