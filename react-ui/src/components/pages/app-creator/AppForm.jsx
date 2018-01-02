@@ -69,7 +69,7 @@ const InnerForm = ({
       />
     </div>
 
-    <button type="submit" disabled={isSubmitting} className="btn">Submit</button>
+    <button type="submit" disabled={false} className="btn">Submit</button>
   </form>
 );
 

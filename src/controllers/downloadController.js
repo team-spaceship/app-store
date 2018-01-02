@@ -1,5 +1,7 @@
 import * as zip from "express-zip";
 
+const path = require('path');
+
 const downloadController = class DownloadController {
   /**
   * Download a ZIP
@@ -8,8 +10,10 @@ const downloadController = class DownloadController {
   * @param next
   */
   download(request, response) {
+    const zip_path = path.join(__dirname, `/../../apps/${request.params.folder}/${request.params.version}/${request.params.zip}`);
+    
     response.zip([
-      { path: __dirname + `/../../apps/${request.params.zip}`, name: `${request.params.zip}` },
+      { path: zip_path, name: `${request.params.zip}` },
     ]);
   }
 };
