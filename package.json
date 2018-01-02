@@ -35,7 +35,7 @@
     "all": "yarn run frontend && yarn start",
     "start": "babel-watch src/wrapper.js",
     "frontend": "cd react-ui && ttab yarn start",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm run build && cd react-ui && npm run build",
     "build": "babel src --out-dir lib --copy-files",
     "lint": "eslint src",
     "test": "nyc tape tests/unit/*.js | tap-nyc",
