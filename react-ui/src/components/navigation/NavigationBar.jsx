@@ -68,6 +68,11 @@ class NavigationBar extends Component {
                 Features
               </a>
             </li>
+            <li>
+              <a className="nav-link" href="/app/create">
+                Upload new app
+              </a>              
+            </li>
             <li className="nav-item">{this.showProfile()}</li>
           </ul>
         </div>
