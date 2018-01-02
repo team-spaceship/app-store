@@ -5,6 +5,6 @@ export default class DownloadRoutes {
   * Create the download routes.
   */
   static create(router) {
-    router.get('/download/:zip', downloadController.download);
+    router.get('/download/:folder/:version/:zip', downloadController.download);
   }
 }

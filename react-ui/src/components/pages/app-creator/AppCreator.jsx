@@ -13,8 +13,15 @@ class AppCreator extends Component {
   }
 
   handleFormSubmit = (app) => {
-    this.AppService.submitApp(app);
-    this.props.history.push("/");
+    this.AppService.submitApp(app).then( (response) => {
+      if (response.success) {
+        this.props.history.push("/");
+        return true;
+      } else {
+        console.log('something went wrong', response.message);
+        return false;
+      }
+    });
   }
 
   render() {
