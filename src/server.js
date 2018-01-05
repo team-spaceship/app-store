@@ -38,6 +38,8 @@ const whitelist = [
   'http://localhost:3003',
   'http://raspberrypi.local:3002',
   'projector-app-store.herokuapp.com',
+  'http://projector-app-store.herokuapp.com',
+  'https://projector-app-store.herokuapp.com',
 ];
 
 const corsOptions = {
