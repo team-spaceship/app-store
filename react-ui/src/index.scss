@@ -11,7 +11,7 @@ body {
   padding: 0;
   background-color: #030f33;
   color: $white;
-  &>div {
+  & > div {
     overflow: hidden;
   }
 }
@@ -26,7 +26,7 @@ body {
 
 .btn.btn-main {
   cursor: pointer;
-  transition: all 0.2s ease 0.1s;
+  transition: all 0.2s;
   &:hover {
     background: transparent;
     color: #fff;
@@ -117,7 +117,6 @@ p {
   }
 }
 
-
 /* -------------------------------- 
 
 Buttons 
@@ -146,7 +145,6 @@ Buttons
     font-size: 15px;
   }
 }
-
 
 /* -------------------------------- 
 

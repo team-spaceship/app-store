@@ -2,11 +2,15 @@
   color: #030f33;
   box-sizing: border-box;
   margin-top: 25px;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s;
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
   }
+}
+
+.card--wrapper {
+  box-shadow: 0 0 57px 0 rgba(4, 6, 9, 0.1);
 }
 
 .app--card-image {
@@ -20,14 +24,14 @@
   display: flex;
   align-items: flex-end;
   &:hover::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    opacity: .4;
+    opacity: 0.4;
   }
   p {
     display: none;
@@ -60,7 +64,8 @@
   justify-content: space-between;
 }
 
-.app--card-body p, h3 {
+.app--card-body p,
+h3 {
   color: #1a1a1a;
 }
 
@@ -172,7 +177,8 @@
   border: none;
   cursor: pointer;
   box-shadow: 0px 6px 20px 0px rgba(244, 40, 143, 0.31);
-  &.blue, &:hover {
+  &.blue,
+  &:hover {
     background: #030f33;
     box-shadow: 0px 6px 20px 0px rgba(56, 37, 141, 0.31);
   }

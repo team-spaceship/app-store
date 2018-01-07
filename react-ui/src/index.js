@@ -27,5 +27,5 @@ ReactDOM.render(
       <Background />
     </div>
   </Router>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );

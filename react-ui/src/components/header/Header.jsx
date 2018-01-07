@@ -1,5 +1,6 @@
 import React from "react";
 import NavigationBar from "../navigation/NavigationBar";
+import HeaderBeamer from "../../images/Beamer_Header.png";
 import "./header.css";
 
 const Header = () => {
