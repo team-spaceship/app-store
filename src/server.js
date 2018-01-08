@@ -8,7 +8,6 @@ import cors from 'cors';
 import path from 'path';
 import passport from './middleware/passport';
 
-import OrderRoutes from "./routes/orderRoutes";
 import AppRoutes from "./routes/appRoutes";
 import CategoryRoutes from "./routes/categoryRoutes";
 import DownloadRoutes from "./routes/downloadRoutes";
@@ -60,7 +59,6 @@ app.options('*', cors());
 
 app.use(passport);
 
-OrderRoutes.create(app);
 AppRoutes.create(app);
 CategoryRoutes.create(app);
 DownloadRoutes.create(app);
