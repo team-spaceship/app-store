@@ -33,14 +33,14 @@ const uploadController = class UploadController {
       },
     });
 
-    this.bucket = this.storage.bucket("lumos");
+    const bucket = this.storage.bucket("lumos");
 
-    this.bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
+    bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
 
     //-
     // If the callback is omitted, we'll return a Promise.
     //-
-    this.bucket.iam.getPolicy().then((data) => {
+    bucket.iam.getPolicy().then((data) => {
       const policy = data[0];
       const apiResponse = data[1];
     });
@@ -48,7 +48,7 @@ const uploadController = class UploadController {
     //-
     // Make all of the files currently in a bucket publicly readable.
     //-
-    this.options = {
+    const options = {
       entity: 'allUsers',
       role: this.storage.acl.READER_ROLE,
     };
@@ -56,9 +56,9 @@ const uploadController = class UploadController {
     //-
     // Make any new objects added to a bucket publicly readable.
     //-
-    this.bucket.acl.add(this.options, (err, aclObject) => { console.log(err); });
+    bucket.acl.add(options, (err, aclObject) => { console.log(err); });
 
-    this.bucket.makePublic();
+    bucket.makePublic();
   }
 
   /**
