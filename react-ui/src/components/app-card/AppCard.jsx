@@ -28,7 +28,7 @@ class AppCard extends Component {
           {/* Hier moet een application image gevuld worden. Deze is er volgens mij nog niet? Of is dit app_icon of app_banner? */}
           <img
             className="app--card-image"
-            src="https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif"
+            src={latest_version.banner_path || "https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif"}
             alt="app-logo"
           />
           <p className="app--card-description">{appDescriptionTrim()}</p>
