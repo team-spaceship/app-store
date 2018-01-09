@@ -21,11 +21,16 @@ const uploadController = class UploadController {
   }
 
   async init() {
+    const private_key = {
+      key: process.env.GOOGLE_CLIENT_KEY.replace(/\\n/g, '\n').toString('utf8').trim(),
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    };
+
     // Log in to googlee
     this.storage = new Storage({
       projectId: process.env.GOOGLE_BUCKET,
       credentials: {
-        private_key: JSON.parse(process.env.GOOGLE_CLIENT_KEY),
+        private_key: JSON.parse(JSON.stringify(private_key.key)),
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
       },
     });
