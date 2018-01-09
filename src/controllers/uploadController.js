@@ -9,6 +9,8 @@ const Storage = require('@google-cloud/storage');
 
 const uploadFolderPath = path.join(__dirname + "/../../apps");
 
+const key = JSON.stringify(require('./keys'));
+
 const uploadController = class UploadController {
   constructor() {
     this.appName = "";
@@ -21,17 +23,12 @@ const uploadController = class UploadController {
   }
 
   async init() {
-    const private_key = {
-      key: process.env.GOOGLE_CLIENT_KEY.replace(/\\n/g, '\n').toString('utf8').trim(),
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    };
-
     // Log in to googlee
     this.storage = new Storage({
       projectId: process.env.GOOGLE_BUCKET,
       credentials: {
-        private_key: JSON.parse(JSON.stringify(private_key.key)),
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: JSON.parse(key).default.private_key,
+        client_email: JSON.parse(key).default.client_email,
       },
     });
 
