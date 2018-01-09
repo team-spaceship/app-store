@@ -9,6 +9,16 @@ const Storage = require('@google-cloud/storage');
 
 const uploadFolderPath = path.join(__dirname + "/../../apps");
 
+const obj = JSON.parse(process.env.GOOGLE_CLIENT_KEY);
+
+// Log in to googlee
+const storage = new Storage({
+  projectId: process.env.GOOGLE_BUCKET,
+  credentials: {
+    private_key: obj.private_key,
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  },
+});
 
 const uploadController = class UploadController {
   constructor() {
@@ -18,23 +28,12 @@ const uploadController = class UploadController {
     this.description = "";
     this.pathToVersionFolder = "";
     this.versionFilePath = "";
-    
-    const obj = JSON.parse(process.env.GOOGLE_CLIENT_KEY);
-
-    // Log in to googlee
-    this.storage = new Storage({
-      projectId: process.env.GOOGLE_BUCKET,
-      credentials: {
-        private_key: obj.private_key,
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      },
-    });
 
     this.init();
   }
 
   init() {
-    const bucket = this.storage.bucket("lumos");
+    const bucket = storage.bucket("lumos");
 
     bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
 
@@ -51,7 +50,7 @@ const uploadController = class UploadController {
     //-
     const options = {
       entity: 'allUsers',
-      role: this.storage.acl.READER_ROLE,
+      role: storage.acl.READER_ROLE,
     };
 
     //-
@@ -153,7 +152,7 @@ const uploadController = class UploadController {
   async uploadBannerAndIcon(bucketName, filename, type) {
     const rename = `${type}-${this.convertAppName(this.appName)}-${this.version}`;
 
-    await this.storage
+    await storage
       .bucket(bucketName)
       .upload(filename, { public: true })
       .then(() => {
@@ -166,7 +165,7 @@ const uploadController = class UploadController {
 
     const file_type = type === "icon" ? ".svg" : ".png";
 
-    await this.storage
+    await storage
       .bucket(bucketName)
       .file(`${type}${file_type}`)
       .move(`${rename}${file_type}`)
@@ -182,7 +181,7 @@ const uploadController = class UploadController {
   async uploadFile(bucketName, filename) {
     const newFileName = `${this.convertAppName(this.appName)}-${this.version}.zip`;
 
-    await this.storage
+    await storage
       .bucket(bucketName)
       .upload(filename, { public: true }) 
       .then(() => {
@@ -193,7 +192,7 @@ const uploadController = class UploadController {
         throw new Error(err);
       });
 
-    await this.storage
+    await storage
       .bucket(bucketName)
       .file(`${this.version}.zip`)
       .move(newFileName)
