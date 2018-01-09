@@ -18,10 +18,7 @@ const uploadController = class UploadController {
     this.description = "";
     this.pathToVersionFolder = "";
     this.versionFilePath = "";
-    this.init();
-  }
-
-  async init() {
+    
     const obj = JSON.parse(process.env.GOOGLE_CLIENT_KEY);
 
     // Log in to googlee
@@ -33,6 +30,10 @@ const uploadController = class UploadController {
       },
     });
 
+    this.init();
+  }
+
+  init() {
     const bucket = this.storage.bucket("lumos");
 
     bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
