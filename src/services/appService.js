@@ -40,6 +40,8 @@ const appService = class AppService {
       version: app.version,
       description: app.description,
       version_path: app.path,
+      icon_path: app.icon_path || "",
+      banner_path: app.banner_path || "",
       version_note: "",
       app: app_id,
       version_installs: [],
