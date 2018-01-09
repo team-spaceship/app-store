@@ -25,7 +25,7 @@ const uploadController = class UploadController {
     this.storage = new Storage({
       projectId: process.env.GOOGLE_BUCKET,
       credentials: {
-        private_key: process.env.GOOGLE_CLIENT_KEY.replace(/\\n/g, '\n'),
+        private_key: JSON.parse(process.env.GOOGLE_CLIENT_KEY),
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
       },
     });
