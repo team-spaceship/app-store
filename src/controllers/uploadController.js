@@ -5,6 +5,7 @@ const fs = require('fs');
 const AdmZip = require('adm-zip');
 const makeDir = require('make-dir');
 const path = require('path');
+const Storage = require('@google-cloud/storage');
 
 const uploadFolderPath = path.join(__dirname + "/../../apps");
 
@@ -16,7 +17,47 @@ const uploadController = class UploadController {
     this.description = "";
     this.pathToVersionFolder = "";
     this.versionFilePath = "";
+    this.init();
   }
+
+  async init() {
+    // Log in to googlee
+    this.storage = new Storage({
+      projectId: process.env.GOOGLE_BUCKET,
+      credentials: {
+        private_key: process.env.GOOGLE_CLIENT_KEY,
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      },
+    });
+
+    this.bucket = this.storage.bucket("lumos");
+
+    this.bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
+
+    //-
+    // If the callback is omitted, we'll return a Promise.
+    //-
+    this.bucket.iam.getPolicy().then((data) => {
+      const policy = data[0];
+      const apiResponse = data[1];
+    });
+
+    //-
+    // Make all of the files currently in a bucket publicly readable.
+    //-
+    this.options = {
+      entity: 'allUsers',
+      role: this.storage.acl.READER_ROLE,
+    };
+
+    //-
+    // Make any new objects added to a bucket publicly readable.
+    //-
+    this.bucket.acl.add(this.options, (err, aclObject) => { console.log(err); });
+
+    this.bucket.makePublic();
+  }
+
   /**
    * @param url, url where the remote file is downloaded from
    * @param path, the local filepath where the downloaded remote file is streamed into
@@ -59,6 +100,8 @@ const uploadController = class UploadController {
       await makeDir(this.pathToVersionFolder);
       const downloaded = await this.downloadFromUrlToFile(this.appDownloadZipUrl, this.versionFilePath);
 
+      await this.uploadFile("lumos", this.versionFilePath);
+
       if (downloaded && downloaded.success === true) {
         await this.createZip();
       } else {
@@ -69,6 +112,8 @@ const uploadController = class UploadController {
         name: this.appName,
         version: this.version,
         description: this.description,
+        icon_path: `https://storage.googleapis.com/lumos/icon-${this.convertAppName(this.appName)}-${this.version}.svg`,
+        banner_path: `https://storage.googleapis.com/lumos/banner-${this.convertAppName(this.appName)}-${this.version}.png`,
         path: path.join(`${this.convertAppName(this.appName)}/${this.version}/${this.version}.zip`),
       };
 
@@ -83,8 +128,6 @@ const uploadController = class UploadController {
 
   async createZip() {
     try {
-      console.log(this.versionFilePath);
-
       // @TODO validate zip content
       const zip = AdmZip(this.versionFilePath);
 
@@ -94,10 +137,70 @@ const uploadController = class UploadController {
 
       await zip.extractEntryTo(bannerPath, this.pathToVersionFolder, false, true);
       await zip.extractEntryTo(iconPath, this.pathToVersionFolder, false, true);
+
+      await this.uploadBannerAndIcon("lumos", path.join(this.pathToVersionFolder, "banner.png"), "banner");
+      await this.uploadBannerAndIcon("lumos", path.join(this.pathToVersionFolder, "icon.svg"), "icon");
     } catch (e) {
+      console.log(e);
       throw new Error("Make sure ZIP is valid and manditory files are presen in REPO");
     }
   }
+
+  async uploadBannerAndIcon(bucketName, filename, type) {
+    const rename = `${type}-${this.convertAppName(this.appName)}-${this.version}`;
+
+    await this.storage
+      .bucket(bucketName)
+      .upload(filename, { public: true })
+      .then(() => {
+        console.log(`${filename} uploaded to ${bucketName}.`);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+        throw new Error(err);
+      });
+
+    const file_type = type === "icon" ? ".svg" : ".png";
+
+    await this.storage
+      .bucket(bucketName)
+      .file(`${type}${file_type}`)
+      .move(`${rename}${file_type}`)
+      .then(() => {
+        console.log(`${filename} renamed to ${rename}.`);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+        throw new Error(err);
+      });         
+  }
+
+  async uploadFile(bucketName, filename) {
+    const newFileName = `${this.convertAppName(this.appName)}-${this.version}.zip`;
+
+    await this.storage
+      .bucket(bucketName)
+      .upload(filename, { public: true }) 
+      .then(() => {
+        console.log(`${filename} uploaded to ${bucketName}.`);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+        throw new Error(err);
+      });
+
+    await this.storage
+      .bucket(bucketName)
+      .file(`${this.version}.zip`)
+      .move(newFileName)
+      .then(() => {
+        console.log(`${filename} renamed to ${newFileName}.`);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+        throw new Error(err);
+      });      
+  }  
 
   convertAppName(app_name) {
     return app_name.split(' ').join('-');
