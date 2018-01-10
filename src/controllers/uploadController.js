@@ -183,26 +183,16 @@ const uploadController = class UploadController {
 
     await storage
       .bucket(bucketName)
-      .upload(filename, { public: true }) 
-      .then(() => {
-        console.log(`${filename} uploaded to ${bucketName}.`);
-      })
-      .catch((err) => {
-        console.error('ERROR:', err);
-        throw new Error(err);
-      });
+      .upload(filename, { public: true });
+      
+    console.log(`${filename} uploaded to ${bucketName}.`);
 
     await storage
       .bucket(bucketName)
       .file(`${this.version}.zip`)
-      .move(newFileName)
-      .then(() => {
-        console.log(`${filename} renamed to ${newFileName}.`);
-      })
-      .catch((err) => {
-        console.error('ERROR:', err);
-        throw new Error(err);
-      });      
+      .move(newFileName);
+    
+    console.log(`${filename} renamed to ${newFileName}.`);   
   }  
 
   convertAppName(app_name) {

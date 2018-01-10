@@ -13,31 +13,30 @@ const downloadController = class DownloadController {
   async download(request, response) {
     try {
       // Log in to googlee
+      const obj = JSON.parse(process.env.GOOGLE_CLIENT_KEY);
+
+      // Log in to googlee
       const storage = new Storage({
         projectId: process.env.GOOGLE_BUCKET,
         credentials: {
-          private_key: process.env.GOOGLE_CLIENT_KEY.replace(/\\n/g, '\n'),
+          private_key: obj.private_key,
           client_email: process.env.GOOGLE_CLIENT_EMAIL,
         },
       });
-
-      const zip_path = path.join(__dirname, `/../../apps/${request.params.folder}/${request.params.version}/${request.params.zip}`);
+            
+      const zip_path = path.join(__dirname, `/../../apps/${request.params.folder}-${request.params.zip}`);
 
       const options = {
         // The path to which the file should be downloaded, e.g. "./file.txt"
         destination: zip_path,
       };
 
-      await storage
+      const storage_result = await storage
         .bucket("lumos")
         .file(`${request.params.folder}-${request.params.zip}`)
-        .download(options)
-        .then(() => {
-          console.log(`gs://lumos/${request.params.folder}-${request.params.zip} downloaded to ${zip_path}.`);
-        })
-        .catch((err) => {
-          console.error('ERROR:', err);
-        });
+        .download(options);
+
+      console.log(`gs://lumos/${request.params.folder}-${request.params.zip} downloaded to ${zip_path}.`);
 
       response.zip([
         { path: zip_path, name: `${request.params.zip}` },
