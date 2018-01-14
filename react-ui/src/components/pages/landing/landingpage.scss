@@ -1,5 +1,5 @@
 .wrapper {
-  background: #fff;
+  background: #f7f7f7;
 }
 
 .wrapper--bg {
@@ -57,11 +57,15 @@
     }
     h5 {
       color: #06fefe; // background-image: -webkit-linear-gradient(92deg, #06fefe, #37bddf);
-      // -webkit-background-clip: text;
-      // -webkit-text-fill-color: transparent;
-      // -webkit-animation: hue 80s infinite linear;
     }
   }
+}
+
+.lightbar {
+  height: 2px;
+  width: 100%;
+  display: inline-block;
+  background: linear-gradient(to right,#fff000, #FFF);
 }
 
 .box--thinking {

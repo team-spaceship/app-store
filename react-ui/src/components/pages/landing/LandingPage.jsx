@@ -92,7 +92,7 @@ class LandingPage extends Component {
                   src="https://static1.squarespace.com/static/52f7dbf3e4b0a5a45c1a6bdd/57e6a2ae6b8f5b926163c53b/57e6a2f129687f1c49bd5e14/1474733830099/kickstarter-logo-black.png"
                   alt=""
                 />
-                <div className="lightbar" />
+                <span className="lightbar" />
               </div>
             </section>
           </div>
@@ -164,10 +164,10 @@ class LandingPage extends Component {
                   sapiente quos. Cum harum ducimus dignissimos maxime maiores
                   quidem dolorum nostrum delectus, beatae et.
                 </p>
+                <span className="lightbar" />
               </div>
               {this.renderFeaturedApps(this.state.apps).length > 0 && (
                 <section className="appstore-section">
-                  <h2>Featured Lumos Apps</h2>
                   <div className="row">
                     {this.renderFeaturedApps(this.state.apps)}
                   </div>

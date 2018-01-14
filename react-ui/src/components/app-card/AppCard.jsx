@@ -13,8 +13,8 @@ class AppCard extends Component {
     const latest_version = app.versions[app.versions.length - 1];
 
     function appDescriptionTrim() {
-      if (latest_version.description.length > 140) {
-        return latest_version.description.slice(0, 140) + "...";
+      if (latest_version.description.length > 80) {
+        return latest_version.description.slice(0, 80) + "...";
       } else {
         return latest_version.description;
       }
@@ -29,19 +29,17 @@ class AppCard extends Component {
         }}
       >
         <div className="card--wrapper">
-          <div className="app--card-header">
+          <div className="app--card-body">
             {/* Hier moet een application image gevuld worden. Deze is er volgens mij nog niet? Of is dit app_icon of app_banner? */}
             <img
               className="app--card-image"
-              src="https://images.unsplash.com/photo-1473042904451-00171c69419d?auto=format&fit=crop&w=1550&q=80"
+              src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/169/full/EGH_MobxStateTree.png"
               alt="app-logo"
             />
-            <p className="app--card-description">{appDescriptionTrim()}</p>
-          </div>
-          <div className="app--card-body">
             <h4>{app.name}</h4>
             {/* Is er een application type/category of iets in die richting? Die kan dan hier ingevuld worden. */}
-            <span className="app--card-type">Application Type</span>
+            <p className="app--card-description">{appDescriptionTrim()}</p>
+            <button className="btn-card">See More</button>
           </div>
         </div>
       </div>
