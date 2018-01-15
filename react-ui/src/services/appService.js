@@ -32,6 +32,24 @@ export default class AppService {
     });
   }
 
+  getInstalledApps(id) {
+    return fetch(`${process.env.REACT_APP_STORE_API}/installed-apps`, {
+      credentials: 'include',
+      mode: 'cors',
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.error === 404) {
+        throw new Error("No installed apps were found.");
+      }
+
+      console.log(json);
+      return json;
+    }).catch((error) => {
+      this.errorToJson(error);
+    });
+  }
+
   submitApp(appDetails) {
     return fetch(`${process.env.REACT_APP_STORE_API}/upload/`, {
       credentials: 'include',

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavigationBar from "../../navigation/NavigationBar";
 import UserService from '../../../services/userService';
+import AppService from "../../../services/appService";
+import AppCard from "../../app-card/AppCard";
 
 import "./profile.css";
 
@@ -8,14 +10,17 @@ class Profile extends Component {
   constructor() {
     super();
     this.UserService = new UserService();
+    this.AppService = new AppService();
     this.state = {
       user: {},
+      apps: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
     this.checkUserLogin();
+    this.getApps();
   }
 
   handleInputChange(event) {
@@ -35,6 +40,25 @@ class Profile extends Component {
       loggedIn: account_info.loggedIn,
       user: account_info.user,
     });
+  }
+  async getApps() {
+    const apps = await this.AppService.getInstalledApps();
+
+    this.setState({
+      apps,
+    });
+  }
+
+  renderApps(apps) {
+    if (apps && apps.length > 0) {
+      return apps.map(app => (
+        <AppCard
+          key={"all" + app._id}
+          app={app}
+          onAppSelect={this.onAppSelect}
+        />
+      ));
+    } else return [];
   }
 
   profilePage() {
@@ -70,6 +94,7 @@ class Profile extends Component {
         </section>
         <section className="profile-section">
           <h2>Your apps</h2>
+          <div className="row">{this.renderApps(this.state.apps)}</div>
         </section>
       </div>
     );
