@@ -39,10 +39,15 @@
 
   .app--card {
     width: 33%;
-    max-width: 250px;
+    //max-width: 250px;
     position: absolute;
     top: 17%;
     right: 12%;
+
+    &:last-of-type {
+      right: 100px;
+      top: 20px;
+    }
   }
   .box--border {
     border: 5px solid #06fefe;
@@ -57,6 +62,19 @@
     }
     h5 {
       color: #06fefe; // background-image: -webkit-linear-gradient(92deg, #06fefe, #37bddf);
+    }
+  }
+}
+
+.wrapper--featured {
+  background: #FFF;
+  padding: 40px 0;
+
+  .row {
+    align-items: center;
+
+    .appstore-section {
+      margin-bottom: 0;
     }
   }
 }

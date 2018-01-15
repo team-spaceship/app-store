@@ -30,19 +30,6 @@ class LandingPage extends Component {
     });
   }
 
-  renderApps(apps) {
-    console.log(this.state.apps);
-    if (apps && apps.length > 0) {
-      return apps.map(app => (
-        <AppCard
-          key={"all" + app._id}
-          app={app}
-          onAppSelect={this.onAppSelect}
-        />
-      ));
-    } else return [];
-  }
-
   renderFeaturedApps(apps) {
     const featuredApps = [];
     if (apps && apps.length > 0) {
@@ -50,6 +37,7 @@ class LandingPage extends Component {
         if (app.featured) {
           featuredApps.push(
             <AppCard
+              isLandingPage={false}
               key={"featured" + app._id}
               app={app}
               onAppSelect={this.onAppSelect}
@@ -151,10 +139,10 @@ class LandingPage extends Component {
             WHAT'S <br /> INSIDE
           </h1>
         </div>
-        <div className="wrapper">
+        <div className="wrapper--featured">
           <div className="container">
-            <section className="wrapper--info">
-              <div className="box--thinking">
+            <div className="row">
+              <div className="box--thinking col-md-6">
                 <h2>FEATURED APPS</h2>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -166,16 +154,19 @@ class LandingPage extends Component {
                 </p>
                 <span className="lightbar" />
               </div>
-              {this.renderFeaturedApps(this.state.apps).length > 0 && (
-                <section className="appstore-section">
-                  <div className="row">
-                    {this.renderFeaturedApps(this.state.apps)}
-                  </div>
-                </section>
-              )}
-            </section>
+              <div className="col-md-6">
+                {this.renderFeaturedApps(this.state.apps).length > 0 && (
+                  <section className="appstore-section">
+                    <div className="row">
+                      {this.renderFeaturedApps(this.state.apps)}
+                    </div>
+                  </section>
+                )}
+              </div>
+            </div>
           </div>
         </div>
+
         <div className="wrapper--bg">
           <div className="container">
             <section className="wrapper--specs">
