@@ -5,6 +5,7 @@ class AppCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log(this.props);
   }
 
   render() {
@@ -23,7 +24,7 @@ class AppCard extends Component {
     return (
       <div
         key={app._id}
-        className={!this.props.isLandingPage ? "app--card col-md-6 col-sm-12" : "app--card col-lg-3 col-md-6 col-sm-12"}
+        className={!this.props.isLandingPage ? "app--card col-lg-3 col-md-6 col-sm-12" : "app--card col-md-6 col-sm-12"}
         onClick={() => {
           this.props.onAppSelect(this.props.app._id);
         }}

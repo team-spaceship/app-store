@@ -37,7 +37,7 @@ class LandingPage extends Component {
         if (app.featured) {
           featuredApps.push(
             <AppCard
-              isLandingPage={false}
+              isLandingPage={true}
               key={"featured" + app._id}
               app={app}
               onAppSelect={this.onAppSelect}
