@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./appCard.css";
+import "./appCardAdmin.css";
 
 class AppCard extends Component {
   constructor(props) {
@@ -22,27 +22,29 @@ class AppCard extends Component {
     console.log(app);
 
     return (
-      <div key={app._id} className="app--card col-lg-3 col-md-6 col-sm-12">
-        <div className="app--card-header">
-          {/* Hier moet een application image gevuld worden. Deze is er volgens mij nog niet? Of is dit app_icon of app_banner? */}
-          <img
-            className="app--card-image"
-            src={latest_version.banner_path || "https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif"}
-            alt="app-logo"
-          />
-          <p className="app--card-description">{appDescriptionTrim()}</p>
-        </div>
-        <div className="app--card-body">
-          <h4>{app.name}</h4>
-          {/* Is er een application type/category of iets in die richting? Die kan dan hier ingevuld worden. */}
-          <span 
-            className="app--card-type"
-            onClick={() => {
-              this.props.onAppSelect(this.props.app);
-            }}
-          >
-            Delete from app-store
-          </span>
+      <div id="admin" className=" col-lg-3 col-md-6 col-sm-12">
+        <div key={app._id} className="app--card">
+          <div className="app--card-header">
+            {/* Hier moet een application image gevuld worden. Deze is er volgens mij nog niet? Of is dit app_icon of app_banner? */}
+            <img
+              className="app--card-image"
+              src={latest_version.banner_path || "https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif"}
+              alt="app-logo"
+            />
+            <p className="app--card-description">{appDescriptionTrim()}</p>
+          </div>
+          <div className="app--card-body">
+            <h4>{app.name}</h4>
+            {/* Is er een application type/category of iets in die richting? Die kan dan hier ingevuld worden. */}
+            <button 
+              className="app--card-type"
+              onClick={() => {
+                this.props.onAppSelect(this.props.app);
+              }}
+            >
+              Delete from app-store
+            </button>
+          </div>
         </div>
       </div>
     );
