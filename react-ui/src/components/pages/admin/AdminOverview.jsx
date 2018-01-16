@@ -54,10 +54,10 @@ class AdminOverview extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <NavigationBar />
-        <div className="container">
-          <section className="appstore-section">
+        <div>
+          <section className="appstore-section admin">
             <h2>All Lumos Apps</h2>
             <div className="row">{this.renderApps(this.state.apps)}</div>
           </section>
