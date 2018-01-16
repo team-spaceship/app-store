@@ -16,7 +16,7 @@ class AppDetails extends Component {
     this.installApp = (appId) => {
       this.AppService.installApp(appId).then(() => {
         const installed_app = Object.assign({}, this.state.app);
-        installed_app.is_installed = true;   
+        installed_app.is_installed = true;
 
         this.setState({ app: installed_app });
       });
@@ -25,6 +25,7 @@ class AppDetails extends Component {
 
   componentDidMount() {
     this.getAppById(this.props.match.params.id);
+    console.log(this.state);
   }
 
   async getAppById(id) {
@@ -38,10 +39,12 @@ class AppDetails extends Component {
   render() {
     if (this.state.app) {
       return (
-        <header>
-          <div className="container">
-            <AppHeader appId={this.props.match.params.id} app={this.state.app} installApp={this.installApp} />
-          </div>
+        <div>
+          <header>
+            <div className="container">
+              <AppHeader appId={this.props.match.params.id} app={this.state.app} installApp={this.installApp} />
+            </div>
+          </header>
           <div className="container-light">
             <div className="container">
               <div className="row">
@@ -64,28 +67,27 @@ class AppDetails extends Component {
                   </button>
                 </div>
                 <div className="col-md-5 offset-md-1">
-                  <img className="featured-image" src="https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif" alt="app-logo" />  
-                  <h3>features</h3>
-                  <p className="padding-right">
-                    {this.state.app.description}
-                  </p>
+                  <img className="featured-image" src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/169/full/EGH_MobxStateTree.png" alt="app-logo" />
                 </div>
               </div>
             </div>
           </div>
-          <div className="container call-to-action">
-            <div className="row">
-              <div className="col-md-4">
-                <h2>Are you</h2>
-                <h2 className="yellow">inspired</h2>
-                <h2>to make an app?</h2>
-              </div>
-              <div className="col-md-7 offset-md-1">
-                <p>Suspendisse rhoncus velit a nisi sagittis, at tempus erat lobortis. Quisque quis vestibulum elit. Integer consectetur volutpat eros nec auctor.</p>
-              </div>
+          <div className="wrapper--bg">
+            <div className="container">
+              <section className="wrapper--specs">
+                <div>
+                  <h2>
+                    ARE YOU <br /> <span className="span-title">INSPIRED</span>{" "}
+                    <br /> TO MAKE AN APP?
+                      </h2>
+                </div>
+              </section>
             </div>
+            <h1 className="bg--text right">
+              ARE YOU <br /> INSPIRED? <br />
+            </h1>
           </div>
-        </header>
+        </div>
       );
     } else {
       return null;

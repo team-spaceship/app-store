@@ -1,5 +1,5 @@
 .detail-head {
-    margin-top: 100px;
+    margin-top: 50px;
     .lead.app-lead {
         font-size: 28px;
         color: #06fefe;
@@ -34,7 +34,7 @@
 .container-light {
     background-color: #fff;
     color: black;
-    margin-top: 80px;
+    margin-top: 30px;
     padding: 60px 0 44px 0;
     h1, h2, h3, h4, h5, h6 {
         color: #030f33;
@@ -55,14 +55,8 @@
         }
     }
     img.featured-image {
-        margin-top: -220px;
-        height: 300px;
+        height: auto;
         width: calc(100% - 40px);
-        object-fit: cover;
-        padding: 30px;
-        box-sizing: content-box;
-        border: 5px solid #06fefe;
-        margin-left: -30px;
     }
     button.cat {
         background: #818181;

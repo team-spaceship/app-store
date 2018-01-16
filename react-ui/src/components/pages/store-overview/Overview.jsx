@@ -13,10 +13,10 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: [],
+      apps: []
     };
 
-    this.onAppSelect = (id) => {
+    this.onAppSelect = id => {
       this.props.history.push("/app/" + id + "/details");
     };
   }
@@ -30,7 +30,7 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps,
+      apps
     });
   }
 
@@ -49,14 +49,15 @@ class Overview extends Component {
   renderFeaturedApps(apps) {
     const featuredApps = [];
     if (apps && apps.length > 0) {
-      apps.forEach((app) => {
+      apps.forEach(app => {
         if (app.featured) {
           featuredApps.push(
             <AppCard
               key={"featured" + app._id}
               app={app}
               onAppSelect={this.onAppSelect}
-            />);
+            />
+          );
         }
       });
     }
@@ -67,20 +68,22 @@ class Overview extends Component {
     return (
       <div>
         <Header />
-        <div className="container">
-          {this.renderFeaturedApps(this.state.apps).length > 0 &&
-            <section className="appstore-section">
-              <h2>Featured Lumos Apps</h2>
-              <div className="row">
-                {this.renderFeaturedApps(this.state.apps)}
-              </div>
-            </section>
-          }
+        <div className="wrapper">
+          <div className="container">
+            {this.renderFeaturedApps(this.state.apps).length > 0 && (
+              <section className="appstore-section">
+                <h2>Featured Lumos Apps</h2>
+                <div className="row">
+                  {this.renderFeaturedApps(this.state.apps)}
+                </div>
+              </section>
+            )}
 
-          <section className="appstore-section">
-            <h2>All Lumos Apps</h2>
-            <div className="row">{this.renderApps(this.state.apps)}</div>
-          </section>
+            <section className="appstore-section">
+              <h2>All Lumos Apps</h2>
+              <div className="row">{this.renderApps(this.state.apps)}</div>
+            </section>
+          </div>
         </div>
       </div>
     );
