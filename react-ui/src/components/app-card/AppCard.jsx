@@ -31,14 +31,12 @@ class AppCard extends Component {
       >
         <div className="card--wrapper">
           <div className="app--card-body">
-            {/* Hier moet een application image gevuld worden. Deze is er volgens mij nog niet? Of is dit app_icon of app_banner? */}
             <img
               className="app--card-image"
-              src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/169/full/EGH_MobxStateTree.png"
+              src={latest_version.banner_path || "https://cdn.dribbble.com/users/380268/screenshots/1187493/timelapse-2.gif"}
               alt="app-logo"
             />
             <h4>{app.name}</h4>
-            {/* Is er een application type/category of iets in die richting? Die kan dan hier ingevuld worden. */}
             <p className="app--card-description">{appDescriptionTrim()}</p>
             <button className="btn-card">See More</button>
           </div>

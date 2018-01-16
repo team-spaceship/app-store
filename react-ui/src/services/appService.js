@@ -14,6 +14,26 @@ export default class AppService {
     });
   }
 
+
+  deleteApp(id) {
+    return fetch(`http://localhost:3000/v1/admin/app/${id}/delete`, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'DELETE',
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.error === 404) {
+        throw new Error("Deletion failed.");
+      }
+
+      console.log(json);
+      return json;
+    }).catch((error) => {
+      this.errorToJson(error);
+    });
+  }
+
   getAppById(id) {
     return fetch(`${process.env.REACT_APP_STORE_API}/apps/` + id, {
       credentials: 'include',

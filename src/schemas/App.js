@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Version from './Version';
 
 const AppSchema = new mongoose.Schema({
   name: String,
@@ -8,6 +9,14 @@ const AppSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+
+/* eslint-disable */
+AppSchema.pre('findOneAndRemove', function (next) {  
+  Version.remove({ app: this._conditions._id }).exec();
+  next();
+});
+/* eslint-enable */
+
 
 mongoose.model('App', AppSchema);
 
