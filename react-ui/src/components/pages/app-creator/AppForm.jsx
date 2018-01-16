@@ -15,63 +15,61 @@ const InnerForm = ({
   handleSubmit,
   isSubmitting,
 }) => (
-  <form onSubmit={handleSubmit} className="app-form">
+    <form onSubmit={handleSubmit} className="app-form">
+      <div className="input-group">
+        <label htmlFor="name">App Name</label>
+        {errors.name ? <div className="input-feedback">{errors.name}</div> : null}
+        <input
+          type="text"
+          name="name"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.name}
+          placeholder="app name"
+        />
+      </div>
 
-    <div className="input-group">
-      <label htmlFor="name">App Name</label>
-      {errors.name ? <div className="input-feedback">{errors.name}</div> : null}
-      <input
-        type="text"
-        name="name"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.name}
-        placeholder="app name"
-      />
-    </div>
+      <div className="input-group c">
+        <label htmlFor="version">App Version</label>
+        {errors.version ? <div className="input-feedback">{errors.version}</div> : null}
+        <input
+          type="text"
+          name="version"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.version}
+          placeholder="version"
+        />
+      </div>
 
-    <div className="input-group">
-      <label htmlFor="version">App Version</label>
-      {errors.version ? <div className="input-feedback">{errors.version}</div> : null}
-      <input
-        type="text"
-        name="version"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.version}
-        placeholder="version"
-      />
-    </div>
+      <div className="input-group">
+        <label htmlFor="url">Repository Url</label>
+        {errors.url ? <div className="input-feedback">{errors.url}</div> : null}
+        <input
+          type="text"
+          name="url"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.url}
+          placeholder="app repository"
+        />
+      </div>
 
-    <div className="input-group">
-      <label htmlFor="description">App Description</label>
-      {errors.description ? <div className="input-feedback">{errors.description}</div> : null}
-      <input
-        type="text"
-        name="description"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.description}
-        placeholder="description"
-      />
-    </div>
-
-    <div className="input-group">
-      <label htmlFor="url">Repository Url</label>
-      {errors.url ? <div className="input-feedback">{errors.url}</div> : null}
-      <input
-        type="text"
-        name="url"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.url}
-        placeholder="app repository"
-      />
-    </div>
-
-    <button type="submit" disabled={false} className="btn">Submit</button>
-  </form>
-);
+      <div className="input-group ">
+        <label htmlFor="description">App Description</label>
+        {errors.description ? <div className="input-feedback">{errors.description}</div> : null}
+        <input
+          type="text"
+          name="description"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.description}
+          placeholder="description"
+        />
+      </div>
+      <button type="submit" disabled={false} className="btn">Submit</button>
+    </form>
+  );
 
 // Wrap our form with the using withFormik HoC
 const AppForm = withFormik({

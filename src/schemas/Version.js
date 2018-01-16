@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import InstalledVersion from './InstalledVersion';
 
 const VersionSchema = new mongoose.Schema({
   version: String,

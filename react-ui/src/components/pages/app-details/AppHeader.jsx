@@ -3,7 +3,7 @@ import NavigationBar from '../../navigation/NavigationBar';
 
 class AppHeader extends Component {
   constructor(props) {
-    super(props);  
+    super(props);
     this.state = {};
   }
 
@@ -12,7 +12,7 @@ class AppHeader extends Component {
       return (
         <button type="button" className="btn btn-main" disabled>
           Installed
-        </button>        
+        </button>
       );
     }
     return (
@@ -33,11 +33,6 @@ class AppHeader extends Component {
             <p className="lead">
               {this.installApp()}
             </p>
-          </div>
-          <div className="col-md-7 offset-md-1">
-            <div className="excerpt">
-              Sed hendrerit metus quis est volutpat, vel molestie sapien luctus. Curabitur a tortor nec sem dignissim rutrum. Cras eu nulla pellentesque massa dignissim iaculis.
-            </div>
           </div>
         </div>
       </div>

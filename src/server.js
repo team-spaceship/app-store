@@ -13,6 +13,7 @@ import CategoryRoutes from "./routes/categoryRoutes";
 import DownloadRoutes from "./routes/downloadRoutes";
 import UserRoutes from "./routes/userRoutes";
 import UploadRoutes from "./routes/uploadRoutes";
+import AdminRoutes from "./routes/adminRoutes";
 
 const MongoStore = connectMongo(session);
 
@@ -64,6 +65,8 @@ CategoryRoutes.create(app);
 DownloadRoutes.create(app);
 UserRoutes.create(app);
 UploadRoutes.create(app);
+AdminRoutes.create(app);
+
 
 app.use(express.static(path.join(__dirname, '/../react-ui/build')));
 app.use(express.static(path.join(__dirname, '/../apps')));
