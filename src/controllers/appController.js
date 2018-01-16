@@ -88,6 +88,17 @@ const appController = class AppController {
     );
   }
 
+  uninstallApp(req, res) {
+    appService.uninstallApp(res, req.params.id).then(
+      (result) => {
+        res.json(result);
+      },
+      (error) => {
+        res.status(500).send({ message: "Something went wrong: " + error.message });
+      },
+    );
+  }  
+
   deleteAllApps(req, res) {
     console.log('Deleting all apps.');
   }

@@ -7,9 +7,10 @@ class AppCard extends Component {
     this.state = {};
   }
 
-  uninstallApps() {
+  uninstallApps(app) {
     if (this.props.uninstall) {
-      return (<div> <br /> <button className="btn-card">uninstall</button></div>);
+      console.log(this.props.app);
+      return (<div> <br /> <button className="btn-card" onClick={() => this.props.uninstall(app.version.app._id)}>uninstall</button></div>);
     } else {
       return (<button className="btn-card">See More</button>);
     }
@@ -53,7 +54,7 @@ class AppCard extends Component {
             />
             <h4>{app.name || latest_version.app.name}</h4>
             <p className="app--card-description">{appDescriptionTrim()}</p>
-            {this.uninstallApps()}
+            {this.uninstallApps(this.props.app)}
           </div>
         </div>
       </div>

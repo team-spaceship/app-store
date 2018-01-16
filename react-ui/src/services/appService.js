@@ -35,7 +35,7 @@ export default class AppService {
   }
 
   uninstallApp(id) {
-    return fetch(`${process.env.REACT_APP_STORE_API}/admin/app/${id}/uninstall`, {
+    return fetch(`${process.env.REACT_APP_STORE_API}/apps/${id}/uninstall`, {
       credentials: 'include',
       mode: 'cors',
       method: 'DELETE',
@@ -43,7 +43,7 @@ export default class AppService {
       return response.json();
     }).then((json) => {
       if (json.error === 404) {
-        throw new Error("Deletion failed.");
+        throw new Error("Uninstall failed.");
       }
 
       console.log(json);
