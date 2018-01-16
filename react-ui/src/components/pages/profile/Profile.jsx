@@ -20,7 +20,9 @@ class Profile extends Component {
 
   componentDidMount() {
     this.checkUserLogin();
-    this.getApps();
+    this.getApps().then(() => {
+      this.setState();
+    });
   }
 
   handleInputChange(event) {
@@ -41,27 +43,39 @@ class Profile extends Component {
       user: account_info.user,
     });
   }
+
   async getApps() {
     const apps = await this.AppService.getInstalledApps();
+
+    console.log("HOI");
+    console.log(apps[0]);
 
     this.setState({
       apps,
     });
   }
 
+  async uninstall(id) {
+    const uninstall = await this.AppService.uninstallApp(id);
+    this.getApps();
+  } 
+
   renderApps(apps) {
-    if (apps && apps.length > 0) {
+    if (apps && apps.length > 0) { 
       return apps.map(app => (
         <AppCard
-          key={"all" + app._id}
+          key={"my" + app._id}
           app={app}
-          onAppSelect={this.onAppSelect}
+          onAppSelect={this.uninstall}
+          uninstall={this.uninstall}
         />
       ));
     } else return [];
   }
 
   profilePage() {
+    console.log("app state");
+    console.log(this.state.apps);
     return (
       <div className="container">
         <section className="profile-section">

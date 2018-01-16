@@ -13,7 +13,7 @@ class Overview extends Component {
     this.AppService = new AppService();
 
     this.state = {
-      apps: []
+      apps: [],
     };
 
     this.onAppSelect = id => {
