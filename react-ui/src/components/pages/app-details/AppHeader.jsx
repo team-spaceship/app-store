@@ -30,9 +30,9 @@ class AppHeader extends Component {
           <div className="col-md-4">
             <p className="lead app-lead">A plugin called</p>
             <h1 className="display-3 intro-text">{this.props.app.name}</h1>
-            {/* <p className="lead">
+            <p className="lead">
               {this.installApp()}
-            </p> */}
+            </p>
           </div>
         </div>
       </div>
