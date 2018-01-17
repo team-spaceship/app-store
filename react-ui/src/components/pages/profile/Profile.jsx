@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavigationBar from "../../navigation/NavigationBar";
 import UserService from '../../../services/userService';
+import AppService from "../../../services/appService";
+import AppCard from "../../app-card/AppCard";
 
 import "./profile.css";
 
@@ -8,20 +10,32 @@ class Profile extends Component {
   constructor() {
     super();
     this.UserService = new UserService();
+    this.AppService = new AppService();
     this.state = {
       user: {},
+      apps: [],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.uninstall = this.uninstall.bind(this);
   }
 
   componentDidMount() {
     this.checkUserLogin();
+    this.getApps().then(() => {
+      this.setState();
+    });
   }
 
-  handleInputChange(event) {
-    const user = this.state.user;
-    user[event.target.name] = event.target.value;
-    this.setState(user);
+  onClickCard() {
+    console.log("Do nothing..");
+  }
+
+  async getApps() {
+    const apps = await this.AppService.getInstalledApps();
+
+    this.setState({
+      apps,
+    });
   }
 
   async checkUserLogin() {
@@ -30,12 +44,26 @@ class Profile extends Component {
     if (!account_info.loggedIn) {
       return;
     }
-  
+
     this.setState({
       loggedIn: account_info.loggedIn,
       user: account_info.user,
     });
   }
+
+  handleInputChange(event) {
+    const user = this.state.user;
+    user[event.target.name] = event.target.value;
+    this.setState(user);
+  }
+
+  async uninstall(id) {
+    const uninstall = await this.AppService.uninstallApp(id);
+    
+    setTimeout(() => {
+      this.getApps();
+    }, 200);
+  } 
 
   profilePage() {
     return (
@@ -70,9 +98,23 @@ class Profile extends Component {
         </section>
         <section className="profile-section">
           <h2>Your apps</h2>
+          <div className="row">{this.renderApps(this.state.apps)}</div>
         </section>
       </div>
     );
+  }
+
+  renderApps(apps) {
+    if (apps && apps.length > 0) {
+      return apps.map(app => (
+        <AppCard
+          key={"my" + app._id}
+          app={app}
+          onAppSelect={this.onClickCard}
+          uninstall={this.uninstall}
+        />
+      ));
+    } else return [];
   }
 
   render() {
