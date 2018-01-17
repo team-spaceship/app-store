@@ -3,25 +3,30 @@ import NavigationBar from "../navigation/NavigationBar";
 import HeaderBeamer from "../../images/Beamer_Header.png";
 import "./header.css";
 
+function checkItOutButton() {
+  if (document.location.href.indexOf("landing") == -1) {
+    return (
+      <p className="lead">
+        <a className="btn btn-main" href="/landing">
+          Check it out!
+        </a>
+      </p>
+    );
+  } else return "";
+}
+
 const Header = () => {
   return (
     <header>
       <div className="container">
         <NavigationBar />
-
+        
         <div className="lumos-leader">
-          <h1>WE ARE</h1>
-          <h1 className="title-blue">SPECIALIZED</h1>
-          <h1>COMPETENTIES</h1>
+          <h1><span className="title-blue">Lumos</span> Projector</h1>
           <p className="lead">
-            A smart, multipurpose projector for displaying ambient information.
+          A smart, multipurpose projector for displaying ambient information.
           </p>
-
-          <p className="lead">
-            <button type="button" className="btn btn-main">
-              Check it out!
-            </button>
-          </p>
+          { checkItOutButton() }
         </div>
       </div>
     </header>

@@ -16,7 +16,7 @@ class Overview extends Component {
       apps: [],
     };
 
-    this.onAppSelect = id => {
+    this.onAppSelect = (id) => {
       this.props.history.push("/app/" + id + "/details");
     };
   }
@@ -30,7 +30,7 @@ class Overview extends Component {
     const apps = await this.AppService.getApps();
 
     this.setState({
-      apps
+      apps,
     });
   }
 
@@ -49,7 +49,7 @@ class Overview extends Component {
   renderFeaturedApps(apps) {
     const featuredApps = [];
     if (apps && apps.length > 0) {
-      apps.forEach(app => {
+      apps.forEach((app) => {
         if (app.featured) {
           featuredApps.push(
             <AppCard
