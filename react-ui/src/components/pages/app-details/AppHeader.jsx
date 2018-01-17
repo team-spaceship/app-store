@@ -28,7 +28,7 @@ class AppHeader extends Component {
         <NavigationBar />
         <div className="detail-head row">
           <div className="col-md-4">
-            <p className="lead app-lead">A plugin called</p>
+            <p className="lead app-lead">Lumos app</p>
             <h1 className="display-3 intro-text">{this.props.app.name}</h1>
             <p className="lead">
               {this.installApp()}

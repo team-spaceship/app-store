@@ -51,6 +51,7 @@ class AppDetails extends Component {
                 <div className="col-md-6">
                   <h3>Description</h3>
                   <p>
+                    {console.log(this.state.app.latest_version)}
                     {this.state.app.latest_version.description}
                   </p>
                   <h3>Rating</h3>
@@ -67,7 +68,7 @@ class AppDetails extends Component {
                   </button>
                 </div>
                 <div className="col-md-5 offset-md-1">
-                  <img className="featured-image" src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/169/full/EGH_MobxStateTree.png" alt="app-logo" />
+                  <img className="featured-image" src={this.state.app.latest_version.banner_path} alt="app-logo" />
                 </div>
               </div>
             </div>
