@@ -71,12 +71,15 @@ const appService = class AppService {
     
     detail_app.is_installed = 0;
     
+    const latest_version = await this.getLatestAppVersionByAppId(id);
+    
     if (user) {
-      const latest_version = await this.getLatestAppVersionByAppId(id);
       const is_installed = await this.getInstalledApp(latest_version._id, user._id);
       
       detail_app.is_installed = is_installed.length;
     }
+
+    detail_app.latest_version = latest_version;
     
     return detail_app;
   }

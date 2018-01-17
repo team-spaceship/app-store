@@ -51,10 +51,10 @@ class AppDetails extends Component {
                 <div className="col-md-6">
                   <h3>Description</h3>
                   <p>
-                    {this.state.app.description}
+                    {this.state.app.latest_version.description}
                   </p>
                   <h3>Rating</h3>
-                  sterren
+                  &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;
                   <h3>Categories</h3>
                   <button className="cat">
                     Game
@@ -79,7 +79,7 @@ class AppDetails extends Component {
                   <h2>
                     ARE YOU <br /> <span className="span-title">INSPIRED</span>{" "}
                     <br /> TO MAKE AN APP?
-                      </h2>
+                  </h2>
                 </div>
               </section>
             </div>
