@@ -16,7 +16,7 @@ export default class AppService {
 
 
   deleteApp(id) {
-    return fetch(`http://localhost:3000/v1/admin/app/${id}/delete`, {
+    return fetch(`${process.env.REACT_APP_STORE_API}/admin/app/${id}/delete`, {
       credentials: 'include',
       mode: 'cors',
       method: 'DELETE',

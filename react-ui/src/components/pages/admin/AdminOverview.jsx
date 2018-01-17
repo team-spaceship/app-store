@@ -15,14 +15,15 @@ class AdminOverview extends Component {
       apps: [],
     };
 
-    this.onAppSelect = (app) => {
+    this.onAppSelect = async (app) => {
       console.log(app);
       /* eslint-disable */
       const confirm = window.confirm(`Are you sure you want to delete ${app.name}`);
       /* eslint-enable */
       if (confirm) {
         console.log(`Deleting ${app.name} from the app-store.`);
-        this.AppService.deleteApp(app._id);
+        await this.AppService.deleteApp(app._id);
+        this.getApps();
       } 
     };
   }
