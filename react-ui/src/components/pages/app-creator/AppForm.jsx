@@ -14,6 +14,7 @@ const InnerForm = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
+  disableSubmitForm,
 }) => (
     <form onSubmit={handleSubmit} className="app-form">
       <div className="input-group">
@@ -67,7 +68,7 @@ const InnerForm = ({
           placeholder="description"
         />
       </div>
-      <button type="submit" disabled={false} className="btn">Submit</button>
+      <button type="submit" disabled={disableSubmitForm} className="btn">Submit</button>
     </form>
   );
 
@@ -83,7 +84,7 @@ const AppForm = withFormik({
     name: Yup.string()
       .min(2, "C'mon, an name should be longer than that")
       .required('app name is required.'),
-    version: Yup.string()
+    version: Yup.number()
       .required('a version is required'),
     description: Yup.string()
       .min(50, "Please write a longer description")
