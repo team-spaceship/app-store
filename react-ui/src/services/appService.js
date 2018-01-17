@@ -34,6 +34,25 @@ export default class AppService {
     });
   }
 
+  uninstallApp(id) {
+    return fetch(`${process.env.REACT_APP_STORE_API}/apps/${id}/uninstall`, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'DELETE',
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.error === 404) {
+        throw new Error("Uninstall failed.");
+      }
+
+      console.log(json);
+      return json;
+    }).catch((error) => {
+      this.errorToJson(error);
+    });    
+  }
+
   getAppById(id) {
     return fetch(`${process.env.REACT_APP_STORE_API}/apps/` + id, {
       credentials: 'include',
@@ -43,6 +62,24 @@ export default class AppService {
     }).then((json) => {
       if (json.error === 404) {
         throw new Error("No apps were found.");
+      }
+
+      console.log(json);
+      return json;
+    }).catch((error) => {
+      this.errorToJson(error);
+    });
+  }
+
+  getInstalledApps(id) {
+    return fetch(`${process.env.REACT_APP_STORE_API}/installed-apps`, {
+      credentials: 'include',
+      mode: 'cors',
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.error === 404) {
+        throw new Error("No installed apps were found.");
       }
 
       console.log(json);

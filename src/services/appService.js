@@ -154,6 +154,26 @@ const appService = class AppService {
       console.log(e);
     } 
   }
+
+  async uninstallApp(res, id) {
+    try {
+      // Not the nicest solution, but chaining the middleware functions didn't seem to work.
+      const versions = await Version.find({ app: id }).exec();
+
+      versions.forEach((version) => {
+        InstalledVersion.remove({ version: version._id }).exec();
+      });
+
+      const response = {
+        message: "App successfully uninstalled",
+        id,
+      };
+      
+      res.status(200).send(response);
+    } catch (e) {
+      console.log(e);
+    }
+  }  
 };
 
 export default new appService();

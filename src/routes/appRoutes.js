@@ -15,5 +15,7 @@ export default class AppRoutes {
     router.get('/v1/apps/install/:id', authenticated, appController.install);
     
     router.post('/v1/apps', appController.createApp);
+
+    router.delete('/v1/apps/:id/uninstall', authenticated, appController.uninstallApp);
   }  
 }

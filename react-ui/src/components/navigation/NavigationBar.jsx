@@ -64,8 +64,8 @@ class NavigationBar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
+              <a className="nav-link" href="/landing">
+                About Lumos
               </a>
             </li>
             <li>
