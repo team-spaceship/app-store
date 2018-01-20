@@ -67,7 +67,10 @@ const appController = class AppController {
   }
 
   installedApps(req, res) {
-    appService.getInstalledAppsByUserId(req.user._id).then(
+    const user_id = req.user._id || req.query.user_id;
+    console.log("query: ", req.query.user_id);
+
+    appService.getInstalledAppsByUserId(user_id).then(
       (result) => {
         res.json(result);
       },
