@@ -83,7 +83,8 @@ const AppForm = withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string()
       .min(2, "C'mon, an name should be longer than that")
-      .required('app name is required.'),
+      .required('app name is required.')
+      .matches(/^[^./:\\]+$/, 'No periods, slashes or colons allowed in app name.'),
     version: Yup.number()
       .required('a version is required')
       .integer('an integer version number is required (no ".")'),
