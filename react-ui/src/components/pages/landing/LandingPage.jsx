@@ -8,6 +8,7 @@ import ScreenCaps from "../../../images/klepjes.png";
 
 
 
+
 import "./landingpage.css";
 
 class LandingPage extends Component {
