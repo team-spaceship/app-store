@@ -53,28 +53,30 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg">
-        <a href="/" className="header-logo">
-          <img src={LumosLogo} alt="" className="lumos-logo" />
-        </a>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item ">
-              <a className="nav-link" href="/">
-                Home
+        <div className="container">
+          <a href="/" className="header-logo">
+            <img src={LumosLogo} alt="" className="lumos-logo" />
+          </a>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item ">
+                <a className="nav-link" href="/">
+                  Home
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/landing">
-                About Lumos
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/landing">
+                  About Lumos
               </a>
-            </li>
-            <li>
-              <a className="nav-link" href="/app/create">
-                Upload new app
-              </a>              
-            </li>
-            <li className="nav-item">{this.showProfile()}</li>
-          </ul>
+              </li>
+              <li>
+                <a className="nav-link" href="/app/create">
+                  Upload new app
+              </a>
+              </li>
+              <li className="nav-item">{this.showProfile()}</li>
+            </ul>
+          </div>
         </div>
       </nav>
     );
