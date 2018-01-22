@@ -101,7 +101,7 @@ class Profile extends Component {
                 <div className="app--card-body">
                   <img
                     className="app--card-image"
-                    src="https://images-na.ssl-images-amazon.com/images/I/517VX6K97jL._SL500_AC_SS350_.jpg" // placeholder, please insert real image
+                    src="https://dha4w82d62smt.cloudfront.net/items/3C3e3H0T3G1w2X0G1804/IMG_6673.JPG"
                     alt="Lumos"
                   />
                   <h4>Lumos Mark 1</h4>
