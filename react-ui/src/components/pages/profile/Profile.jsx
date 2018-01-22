@@ -59,16 +59,17 @@ class Profile extends Component {
 
   async uninstall(id) {
     const uninstall = await this.AppService.uninstallApp(id);
-    
+
     setTimeout(() => {
       this.getApps();
     }, 200);
-  } 
+  }
 
   profilePage() {
     return (
-      <div className="container">
-        <section className="profile-section">
+
+      <div className="container profile__container">
+        <section className="profile-form">
           <h2>Profile</h2>
           <form action={process.env.REACT_APP_STORE_API + "/saveProfile"} method="post">
             <input type="hidden" name="id" value={this.state.user.id} />
@@ -86,8 +87,8 @@ class Profile extends Component {
                   <td>E-mail:</td>
                   <td><input type="text" name="email" value={this.state.user.email} onChange={this.handleInputChange} /></td>
                 </tr>
-                <tr>
-                  <td colSpan="2"><input type="submit" value="Save changes" /></td>
+                <tr className="submit-td">
+                  <td colSpan="2" ><input type="submit" value="Save changes" /></td>
                 </tr>
               </tbody>
             </table>
@@ -121,7 +122,7 @@ class Profile extends Component {
     return (
       <div>
         <NavigationBar />
-        { this.state.loggedIn ? this.profilePage() : "Please log in to see your profile." }
+        {this.state.loggedIn ? this.profilePage() : "Please log in to see your profile."}
       </div>
     );
   }
