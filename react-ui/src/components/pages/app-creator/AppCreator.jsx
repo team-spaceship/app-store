@@ -41,8 +41,7 @@ class AppCreator extends Component {
           <p className="form-information">
             To submit a Lumos App to the App Store, you need to enter the 
             link to a Git repository in the form below. The repository needs 
-            to have a file named <code>index.html</code>, which needs to contain 
-            a JavaScript function <code>init()</code>. Also, please provide an
+            to contain a file named <code>index.html</code>. Also, please provide an
             informative description.
           </p>
           <p className="form-information">
