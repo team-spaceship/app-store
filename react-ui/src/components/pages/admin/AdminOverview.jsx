@@ -70,7 +70,7 @@ class AdminOverview extends Component {
       console.log(logs);
 
       const rows = logs.map(log => (
-        <div key={"log" + log._id} className="alert alert-warning row">{log.user_name} {log.title} - {log.date_formatted}</div>
+        <div key={"log" + log._id} className="alert alert-warning row">{log.user_name}&nbsp;{log.title} - {log.date_formatted}</div>
       ));
 
       return rows;
