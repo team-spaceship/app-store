@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import AppService from "../../../services/appService";
 import AppCard from "../../app-card/AppCard";
 import Header from "../../header/Header";
+import Footer from "../../footer/footer";
+
 
 import "./overview.css";
 
@@ -85,6 +87,7 @@ class Overview extends Component {
             </section>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
