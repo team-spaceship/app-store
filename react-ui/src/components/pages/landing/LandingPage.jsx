@@ -3,6 +3,10 @@ import Header from "../../header/Header";
 import AppCard from "../../app-card/AppCard";
 import AppService from "../../../services/appService";
 import LightBulb from "../../../images/LightBulb.png";
+import Beamer from "../../../images/Lumos.png";
+import ScreenCaps from "../../../images/klepjes.png";
+
+
 
 import "./landingpage.css";
 
@@ -10,50 +14,12 @@ class LandingPage extends Component {
   constructor(props) {
     super(props);
 
-    this.AppService = new AppService();
-
-    this.state = {
-      apps: []
-    };
   }
-
-  componentDidMount() {
-    // Retrieve all apps.
-    this.getApps();
-  }
-
-  async getApps() {
-    const apps = await this.AppService.getApps();
-
-    this.setState({
-      apps
-    });
-  }
-
-  renderFeaturedApps(apps) {
-    const featuredApps = [];
-    if (apps && apps.length > 0) {
-      apps.forEach(app => {
-        if (app.featured) {
-          featuredApps.push(
-            <AppCard
-              isLandingPage={true}
-              key={"featured" + app._id}
-              app={app}
-              onAppSelect={this.onAppSelect}
-            />
-          );
-        }
-      });
-    }
-    return featuredApps;
-  }
-
   render() {
     const title = "WHAT'S NEW";
     return (
       <div>
-        <Header />
+        <Header isLandingPage={true} />
         <div className="wrapper">
           <div className="container">
             <section className="wrapper--info">
@@ -69,7 +35,7 @@ class LandingPage extends Component {
               <div className="box--thinking">
                 <h2>HOW WE THINK</h2>
                 <p>
-                  At Lumos, we think the world is a community in which we can 
+                  At Lumos, we think the world is a community in which we can
                   help each other, by building cool hardware and apps to run on it.
                 </p>
                 <img
@@ -78,6 +44,8 @@ class LandingPage extends Component {
                 />
                 <span className="lightbar" />
               </div>
+              <img className="box--beamer" src={Beamer} alt="" />
+
             </section>
           </div>
         </div>
@@ -125,20 +93,14 @@ class LandingPage extends Component {
           <div className="container">
             <div className="row">
               <div className="box--thinking col-md-6">
-                <h2>FEATURED APPS</h2>
+                <h2>LUMOS PROTECTORS</h2>
                 <p>
-                  These are must-have apps!
+                  These are must-haves protectors
                 </p>
                 <span className="lightbar" />
               </div>
               <div className="col-md-6">
-                {this.renderFeaturedApps(this.state.apps).length > 0 && (
-                  <section className="appstore-section">
-                    <div className="row">
-                      {this.renderFeaturedApps(this.state.apps)}
-                    </div>
-                  </section>
-                )}
+                <img className="screencaps--img" src={ScreenCaps} alt="" />
               </div>
             </div>
           </div>
