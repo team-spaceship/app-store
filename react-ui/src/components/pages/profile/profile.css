@@ -1,3 +1,40 @@
+.profile__container {
+  display: flex;
+  flex-direction: column; }
+
+.profile-form {
+  background: #FFF;
+  color: #2e2e2e;
+  padding: 20px;
+  align-self: center;
+  display: flex;
+  flex-direction: column; }
+  .profile-form h2 {
+    color: #2e2e2e;
+    margin-bottom: 20px; }
+  .profile-form tbody {
+    display: flex;
+    flex-direction: column; }
+    .profile-form tbody tr:not(:last-child) {
+      margin-bottom: 20px; }
+    .profile-form tbody .submit-td {
+      align-self: center; }
+      .profile-form tbody .submit-td input {
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        background: #ff0080;
+        display: block;
+        padding: 4px 10px;
+        text-align: center;
+        transition: all 0.3s ease 0.1s;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0px 6px 20px 0px rgba(244, 40, 143, 0.31); }
+        .profile-form tbody .submit-td input.blue, .profile-form tbody .submit-td input:hover {
+          background: #030f33;
+          box-shadow: 0px 6px 20px 0px rgba(56, 37, 141, 0.31); }
+
 .profile-section {
   margin-top: 50px;
   margin-bottom: 50px; }
