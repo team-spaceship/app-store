@@ -69,12 +69,8 @@ class LandingPage extends Component {
               <div className="box--thinking">
                 <h2>HOW WE THINK</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consequatur iste enim nihil tempora ex nam rem beatae, cumque
-                  cupiditate quia magni vitae cum veniam. Quam quia illum ad
-                  dolorem, tempore nesciunt quasi accusantium ex fugiat, magni
-                  sapiente quos. Cum harum ducimus dignissimos maxime maiores
-                  quidem dolorum nostrum delectus, beatae et.
+                  At Lumos, we think the world is a community in which we can 
+                  help each other, by building cool hardware and apps to run on it.
                 </p>
                 <img
                   src="https://static1.squarespace.com/static/52f7dbf3e4b0a5a45c1a6bdd/57e6a2ae6b8f5b926163c53b/57e6a2f129687f1c49bd5e14/1474733830099/kickstarter-logo-black.png"
@@ -96,40 +92,26 @@ class LandingPage extends Component {
               <div>
                 <ul>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />Spaceship Support
                   </li>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />Mobile app
                   </li>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
-                  </li>
-                  <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />1's of Lumos Apps
                   </li>
                 </ul>
               </div>
               <div>
                 <ul>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />Build communities
                   </li>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />Sleep better
                   </li>
                   <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
-                  </li>
-                  <li>
-                    <img src={LightBulb} alt="lightbulb icon" />INCLUDES A
-                    MOBILE APP
+                    <img src={LightBulb} alt="lightbulb icon" />Ambient information
                   </li>
                 </ul>
               </div>
@@ -145,12 +127,7 @@ class LandingPage extends Component {
               <div className="box--thinking col-md-6">
                 <h2>FEATURED APPS</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consequatur iste enim nihil tempora ex nam rem beatae, cumque
-                  cupiditate quia magni vitae cum veniam. Quam quia illum ad
-                  dolorem, tempore nesciunt quasi accusantium ex fugiat, magni
-                  sapiente quos. Cum harum ducimus dignissimos maxime maiores
-                  quidem dolorum nostrum delectus, beatae et.
+                  These are must-have apps!
                 </p>
                 <span className="lightbar" />
               </div>
