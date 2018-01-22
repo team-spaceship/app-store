@@ -35,7 +35,7 @@ const uploadController = class UploadController {
   init() {
     const bucket = storage.bucket("lumos");
 
-    bucket.iam.getPolicy((err, policy, apiResponse) => { console.log(err); });
+    bucket.iam.getPolicy((err, policy, apiResponse) => {});
 
     //-
     // If the callback is omitted, we'll return a Promise.
@@ -56,7 +56,7 @@ const uploadController = class UploadController {
     //-
     // Make any new objects added to a bucket publicly readable.
     //-
-    bucket.acl.add(options, (err, aclObject) => { console.log(err); });
+    bucket.acl.add(options, (err, aclObject) => {});
 
     bucket.makePublic();
   }
