@@ -85,7 +85,8 @@ const AppForm = withFormik({
       .min(2, "C'mon, an name should be longer than that")
       .required('app name is required.'),
     version: Yup.number()
-      .required('a version is required'),
+      .required('a version is required')
+      .integer('an integer version number is required (no ".")'),
     description: Yup.string()
       .min(50, "Please write a longer description")
       .required('a description is required'),
