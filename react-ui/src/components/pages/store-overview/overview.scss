@@ -1,5 +1,5 @@
 .appstore-section {
-  margin-top: 50px;
+  margin-top: 140px;
   padding-bottom: 50px;
 
   .row {
@@ -8,5 +8,10 @@
 }
 
 .appstore-section h2 {
-  margin-bottom: 25px;
+  position: relative;
+  top: -160px;
+
+  &:nth-last-of-type(2) {
+    color: #2e2e2e;
+  }
 }

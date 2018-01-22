@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import NavigationBar from "../navigation/NavigationBar";
-import HeaderBeamer from "../../images/Beamer_Header.png";
+import Beamer from "../../images/Lumos.png";
+
 import "./header.css";
 
 function checkItOutButton() {
@@ -15,22 +16,45 @@ function checkItOutButton() {
   } else return "";
 }
 
-const Header = () => {
-  return (
-    <header>
-      <div className="container">
-        <NavigationBar />
-        
-        <div className="lumos-leader">
-          <h1><span className="title-blue">Lumos</span> Projector</h1>
-          <p className="lead">
-          A smart, multipurpose projector for displaying ambient information.
-          </p>
-          { checkItOutButton() }
+
+
+class Header extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log(this.props.isLandingPage);
+  }
+
+  checkImageHeader() {
+    if (this.props.isLandingPage) {
+      return (
+        <div className="lumos__content--img">
+          <img src={Beamer} alt="" />
         </div>
-      </div>
-    </header>
-  );
+      )
+    }
+  }
+
+  render() {
+    return (
+      <header>
+        <div className="container">
+          <NavigationBar />
+
+          <div className="lumos__content">
+            <div className="lumos-leader">
+              <h1><span className="title-blue">Lumos</span> Projector</h1>
+              <p className="lead">
+                A smart, multipurpose projector for displaying ambient information.
+          </p>
+              {checkItOutButton()}
+            </div>
+            {this.checkImageHeader()}
+          </div>
+        </div>
+      </header>
+    );
+  }
 };
 
 export default Header;

@@ -71,7 +71,6 @@ h3 {
 .btn-card {
   background-color: #030f33;
   box-shadow: 0px 9px 24px 0px rgba(56, 37, 141, 0.2);
-  width: 50%;
   align-self: center;
   color: #FFF;
   border: none;
@@ -104,7 +103,6 @@ h3 {
 }
 
 .app--card {
-  height: auto;
   position: relative;
   color: #030f33;
   margin-bottom: 5px;
@@ -126,7 +124,6 @@ h3 {
 .app--card-image {
   width: 100%;
   margin: 0 auto;
-  height: auto;
   transition: all .2s;
 }
 
