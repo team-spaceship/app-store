@@ -8,6 +8,6 @@ export default class AdminRoutes {
   static create(router) {
     router.delete('/v1/admin/app/:id/delete', authenticated, appController.deleteApp);
 
-    router.get('/v1/admin/app/deleteall', authenticated, appController.deleteAllApps);
+    router.get('/v1/admin/deletelogs', authenticated, appController.getDeleteLogs);
   }  
 }

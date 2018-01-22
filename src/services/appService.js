@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import App from '../schemas/App';
 import Version from '../schemas/Version';
+import DeleteLog from '../schemas/DeleteLog';
 import InstalledVersion from '../schemas/InstalledVersion';
 
 const appService = class AppService {
@@ -136,21 +137,31 @@ const appService = class AppService {
     }
   }
   
-  async deleteApp(res, id) {
+  async deleteApp(res, id, user) {
     try {
       // Not the nicest solution, but chaining the middleware functions didn't seem to work.
       const versions = await Version.find({ app: id }).exec();
-      console.log(versions);
 
       versions.forEach((version) => {
         InstalledVersion.remove({ version: version._id }).exec();
       });
-      
-      const app = await App.findByIdAndRemove(id, () => {  
+
+      // Leeeeeeliiijjjjjkk! maar heb even een app name nodig
+      const appToBeDeleted = await App.findById(id).exec();
+
+      const app = await App.findByIdAndRemove(id, async () => {  
         const response = {
           message: "App successfully deleted",
           id,
         };
+
+        const deleteLog = new DeleteLog({
+          title: `deleted ${appToBeDeleted.name}`,
+          user_name: `${user.first_name} ${user.last_name}`,
+          date: new Date(),
+        });
+
+        await deleteLog.save();
         res.status(200).send(response);
       });
     } catch (e) {

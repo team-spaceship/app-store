@@ -1,4 +1,5 @@
 import appService from "../services/appService";
+import deleteLogService from '../services/deleteLogService';
 
 const appController = class AppController {
   /**
@@ -81,7 +82,18 @@ const appController = class AppController {
   }  
 
   deleteApp(req, res) {
-    appService.deleteApp(res, req.params.id).then(
+    appService.deleteApp(res, req.params.id, req.user).then(
+      (result) => {
+        res.json(result);
+      },
+      (error) => {
+        res.status(500).send({ message: "Something went wrong: " + error.message });
+      },
+    );
+  }
+
+  getDeleteLogs(req, res) {
+    deleteLogService.getDeleteLogs(res, req.params.id).then(
       (result) => {
         res.json(result);
       },
@@ -101,10 +113,6 @@ const appController = class AppController {
       },
     );
   }  
-
-  deleteAllApps(req, res) {
-    console.log('Deleting all apps.');
-  }
 };
 
 export default new appController();
