@@ -9,6 +9,7 @@ export default class AppRoutes {
     router.get('/v1/apps', appController.getAllApps);
 
     router.get('/v1/installed-apps', authenticated, appController.installedApps);
+    router.get('/v1/installed-apps-unsafe', appController.installedApps);
     
     router.get('/v1/apps/:id', appController.getAppById);
 
