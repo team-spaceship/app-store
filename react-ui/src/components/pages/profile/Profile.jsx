@@ -95,6 +95,20 @@ class Profile extends Component {
         </section>
         <section className="profile-section">
           <h2>Your devices</h2>
+          <div className="app--card col-lg-3 col-md-6 col-sm-12">
+            <div className="row">
+              <div className="card--wrapper">
+                <div className="app--card-body">
+                  <img
+                    className="app--card-image"
+                    src="https://images-na.ssl-images-amazon.com/images/I/517VX6K97jL._SL500_AC_SS350_.jpg" // placeholder, please insert real image
+                    alt="Lumos"
+                  />
+                  <h4>Lumos Mark 1</h4>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <section className="profile-section">
           <h2>Your apps</h2>
